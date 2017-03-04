@@ -26,6 +26,7 @@ public class PlayFragment extends Fragment {
     @BindView(R.id.radio_oceania) RadioButton radioOceania;
     @BindView(R.id.radio_20) RadioButton radio20;
     @BindView(R.id.radio_30) RadioButton radio30;
+    private boolean firstTimeHint = true;
     public PlayFragment() {
         // Required empty public constructor
     }
@@ -59,7 +60,8 @@ public class PlayFragment extends Fragment {
             btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (b && continentGroup.getCheckedRadioButtonId() == R.id.radio_oceania) {
+                    if (firstTimeHint && b && continentGroup.getCheckedRadioButtonId() == R.id.radio_oceania) {
+                        firstTimeHint = false;
                         Toast.makeText(getContext(), R.string.msg_oceania_countries, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -68,7 +70,7 @@ public class PlayFragment extends Fragment {
         radioOceania.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b && (radio20.isChecked() || radio30.isChecked()))
+                if (firstTimeHint && b && (radio20.isChecked() || radio30.isChecked()))
                     Toast.makeText(getContext(), R.string.msg_oceania_countries, Toast.LENGTH_SHORT).show();
             }
         });

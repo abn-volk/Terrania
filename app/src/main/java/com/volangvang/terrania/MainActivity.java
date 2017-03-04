@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentInteraction {
 
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.nav_view) NavigationView navigationView;
@@ -76,31 +76,39 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new HomeFragment())
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.fragment_holder, new HomeFragment())
                     .commit();
 
         } else if (id == R.id.nav_learn) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new LearnFragment())
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.fragment_holder, new LearnFragment())
                     .commit();
 
         } else if (id == R.id.nav_play) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new PlayFragment())
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.fragment_holder, new PlayFragment())
                     .commit();
 
         } else if (id == R.id.nav_about) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new AboutFragment())
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.fragment_holder, new AboutFragment())
                     .commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onPlayPressed() {
+        navigationView.setCheckedItem(R.id.nav_play);
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, new PlayFragment())
+                .commit();
     }
 }

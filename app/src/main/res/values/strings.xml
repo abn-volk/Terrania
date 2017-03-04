@@ -49,4 +49,7 @@
         \n• Largest area: For each question, choose the country with the largest area.
         \n• Highest population: For each question, choose the most populated country.</string>
     <string name="ok">OK</string>
+    <string name="msg_welcome_terrania">Welcome to Terrania!</string>
+    <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world.         Test your knowledge with quizzes about country names, flags, population and country area.</string>
+    <string name="btn_play_now">Play now</string>
 </resources>
