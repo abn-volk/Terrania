@@ -16,8 +16,37 @@
     <string name="body_team">Computer Science majors from <a href="http://uet.vnu.edu.vn">University of Engineering and Technology</a>, Vietnam National University, Hanoi:
     \n• Phạm Nguyễn Hoàng\n• Nguyễn Văn Tiến\n• Đỗ Quang Thành\n• Nguyễn Văn Thắng</string>
     <string name="header_acknowledgements">Acknowledgements</string>
-    <string name="body_acknowledgements">• World countries information is provided by <a href="https://www.worlddata.info">WorldData.info</a> and <a href="https://github.com/mledoze/countries">mledoze/countries on GitHub</a>.\n• World flags are taken from <a href="http://flagpedia.net/">Flagpedia</a>.\n• Palestine flag and updated Myanmar flag are sourced from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
+    <string name="body_acknowledgements">• World countries information is provided by <a href="https://www.worlddata.info">WorldData.info</a> and <a href="https://github.com/mledoze/countries">mledoze/countries on GitHub</a>.\n• World flags are taken from <a href="http://flagpedia.net/">Flagpedia</a>.\n• The flags of Palestine, Myanmar, Peru, Bolivia and South Sudan are sourced from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="radio_africa">Africa</string>
+    <string name="label_choose_continent">Continent</string>
+    <string name="radio_america">America</string>
+    <string name="radio_asia">Asia</string>
+    <string name="radio_europe">Europe</string>
+    <string name="radio_oceania">Oceania</string>
+    <string name="radio_world">World</string>
+    <string name="label_choose_game_mode">Game mode</string>
+    <string name="c2f">Country to flag</string>
+    <string name="f2c">Flag to country</string>
+    <string name="ct2cp">Country to capital</string>
+    <string name="cp2ct">Capital to country</string>
+    <string name="la">Largest area</string>
+    <string name="hp">Highest population</string>
+    <string name="label_choose_number">Number of countries</string>
+    <string name="number_10">10</string>
+    <string name="number_20">20</string>
+    <string name="number_30">30</string>
+    <string name="number_all">All</string>
+    <string name="btn_go">Go!</string>
+    <string name="msg_oceania_countries">Oceania only has 14 countries. Therefore, choosing 20 or 30 countries is equivalent to \"All\".</string>
+    <string name="title_game_modes">Game modes</string>
+    <string name="msg_game_modes">• Country to flag: For each question, you are given a country. Find the flag for that country.
+        \n• Flag to country: For each question, you are given a flag. Choose the country that has the flag.
+        \n• Country to capital: For each question, you are given a country and four capitals. Find the correct capital.
+        \n• Capital to country: For each question, you are given a capital city. Which country does it belong to?
+        \n• Largest area: For each question, choose the country with the largest area.
+        \n• Highest population: For each question, choose the most populated country.</string>
+    <string name="ok">OK</string>
 </resources>
