@@ -3,6 +3,7 @@ package com.volangvang.terrania;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -75,27 +76,35 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            Fragment homeFragment = getSupportFragmentManager().findFragmentByTag("home");
+            if (homeFragment == null) homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                    .replace(R.id.fragment_holder, new HomeFragment())
+                    .replace(R.id.fragment_holder, homeFragment, "home")
                     .commit();
 
         } else if (id == R.id.nav_learn) {
+            Fragment learnFragment = getSupportFragmentManager().findFragmentByTag("learn");
+            if (learnFragment == null) learnFragment = new LearnFragment();
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                    .replace(R.id.fragment_holder, new LearnFragment())
+                    .replace(R.id.fragment_holder, learnFragment, "learn")
                     .commit();
 
         } else if (id == R.id.nav_play) {
+            Fragment playFragment = getSupportFragmentManager().findFragmentByTag("play");
+            if (playFragment == null) playFragment = new PlayFragment();
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                    .replace(R.id.fragment_holder, new PlayFragment())
+                    .replace(R.id.fragment_holder, playFragment, "play")
                     .commit();
 
         } else if (id == R.id.nav_about) {
+            Fragment aboutFragment = getSupportFragmentManager().findFragmentByTag("about");
+            if (aboutFragment == null) aboutFragment = new AboutFragment();
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                    .replace(R.id.fragment_holder, new AboutFragment())
+                    .replace(R.id.fragment_holder, aboutFragment, "about")
                     .commit();
         }
 
