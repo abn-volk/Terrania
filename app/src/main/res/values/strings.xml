@@ -11,6 +11,7 @@
     <string name="nav_about">About</string>
     <string name="msg_welcome">Welcome</string>
     <string name="msg_login_prompt">Tap here to sign in</string>
+    <string name="msg_logout_prompt">Tap here to sign out</string>
 
     <string name="header_team">Meet the Team</string>
     <string name="body_team">Computer Science majors from <a href="http://uet.vnu.edu.vn">University of Engineering and Technology</a>, Vietnam National University, Hanoi:
@@ -32,8 +33,6 @@
     <string name="f2c">Flag to country</string>
     <string name="ct2cp">Country to capital</string>
     <string name="cp2ct">Capital to country</string>
-    <string name="la">Largest area</string>
-    <string name="hp">Highest population</string>
     <string name="label_choose_number">Number of countries</string>
     <string name="number_10">10</string>
     <string name="number_20">20</string>
@@ -45,11 +44,18 @@
     <string name="msg_game_modes">• Country to flag: For each question, you are given a country. Find the flag for that country.
         \n• Flag to country: For each question, you are given a flag. Choose the country that has the flag.
         \n• Country to capital: For each question, you are given a country and four capitals. Find the correct capital.
-        \n• Capital to country: For each question, you are given a capital city. Which country does it belong to?
-        \n• Largest area: For each question, choose the country with the largest area.
-        \n• Highest population: For each question, choose the most populated country.</string>
+        \n• Capital to country: For each question, you are given a capital city. Which country does it belong to?</string>
     <string name="ok">OK</string>
     <string name="msg_welcome_terrania">Welcome to Terrania!</string>
     <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world.         Test your knowledge with quizzes about country names, flags, population and country area.</string>
     <string name="btn_play_now">Play now</string>
+    <string name="btn_sign_in">Sign in</string>
+    <string name="msg_not_signed_in">You are not signed in!</string>
+    <string name="msg_sign_in_details">Sign in to get the most out of the game, including achievements and leaderboards.</string>
+    <string name="msg_sign_in_error">There was an issue with sign-in. Please try again later.</string>
+    <string name="msg_profile_prompt">Tap to sign out</string>
+    <string name="msg_signed_in">Hello, %s</string>
+    <string name="btn_sign_out">Sign out</string>
+    <string name="btn_achievements">View achievements</string>
+    <string name="btn_leaderboards">Go to leaderboards</string>
 </resources>

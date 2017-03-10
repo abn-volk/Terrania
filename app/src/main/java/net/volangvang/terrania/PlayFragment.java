@@ -1,4 +1,4 @@
-package com.volangvang.terrania;
+package net.volangvang.terrania;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -51,7 +51,6 @@ public class PlayFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.nav_play);
-        getActivity().setTitle(R.string.nav_learn);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.game_modes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         modeSpinner.setAdapter(adapter);

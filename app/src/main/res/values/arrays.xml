@@ -5,7 +5,5 @@
         <item>@string/f2c</item>
         <item>@string/ct2cp</item>
         <item>@string/cp2ct</item>
-        <item>@string/la</item>
-        <item>@string/hp</item>
     </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.volangvang.terrania;
+package net.volangvang.terrania;
 
 import org.junit.Test;
 
