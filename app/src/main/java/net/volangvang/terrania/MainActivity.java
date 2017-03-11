@@ -1,6 +1,6 @@
 package net.volangvang.terrania;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,17 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.games.Games;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     ImageView userImg;
     ImageView userBanner;
     private GoogleApiClient apiClient;
+    private static int RC_SIGN_IN = 2948;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +82,7 @@ public class MainActivity extends AppCompatActivity
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (apiClient.isConnected()) {
-                    Games.signOut(apiClient);
-                }
+                onSignOutClicked();
             }
         });
     }
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        // Do not reconnect if the user signed out explicitly or the user is signing in
         if (!signInFlow && !explicitSignOut) {
             apiClient.connect();
         }
@@ -186,23 +187,33 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == RC_SIGN_IN) {
+            signInClicked = false;
+            resolvingConnectionFailure = false;
+            if (resultCode == RESULT_OK) {
+                apiClient.connect();
+            }
+        }
+    }
+
+    @Override
     public void onConnected(@Nullable Bundle bundle) {
         layoutNotSignedIn.setVisibility(View.GONE);
         layoutSignedIn.setVisibility(View.VISIBLE);
         prompt.setText(getString(R.string.msg_profile_prompt));
         textUserName.setText(Games.Players.getCurrentPlayer(apiClient).getDisplayName());
         textSignedIn.setText(getString(R.string.msg_signed_in, Games.Players.getCurrentPlayer(apiClient).getDisplayName()));
-        Picasso.with(getApplicationContext())
-                .load(Games.Players.getCurrentPlayer(apiClient).getIconImageUri())
-                .into(userImg);
-        Picasso.with(getApplicationContext())
-                .load(Games.Players.getCurrentPlayer(apiClient).getBannerImageLandscapeUri())
-                .into(userBanner);
+        // We have to use this to load images.
+        ImageManager manager = ImageManager.create(this);
+        manager.loadImage(userImg, Games.Players.getCurrentPlayer(apiClient).getIconImageUri());
+        manager.loadImage(userBanner, Games.Players.getCurrentPlayer(apiClient).getBannerImageLandscapeUri());
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        apiClient.connect();
     }
 
     @Override
@@ -211,7 +222,7 @@ public class MainActivity extends AppCompatActivity
         if (signInClicked || autoStartSignInFlow) {
             autoStartSignInFlow = false;
             signInClicked = false;
-            int RC_SIGN_IN = 2948;
+            resolvingConnectionFailure = true;
             if (connectionResult.hasResolution()) {
                 try {
                     connectionResult.startResolutionForResult(this, RC_SIGN_IN);
@@ -221,14 +232,14 @@ public class MainActivity extends AppCompatActivity
                 }
             }
             else {
-                Log.d("Terrania", "Error: " + Integer.toString(connectionResult.getErrorCode()));
-                Dialog dialog = GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(),
-                        this, RC_SIGN_IN);
-                if (dialog != null)
-                    dialog.show();
+                resolvingConnectionFailure = false;
+                Toast.makeText(this, R.string.msg_sign_in_error, Toast.LENGTH_SHORT).show();
             }
         }
-        Log.d("Terrania", Integer.toString(connectionResult.getErrorCode()));
+        showSignInButton();
+    }
+
+    private void showSignInButton() {
         // Display the sign-in button
         layoutNotSignedIn.setVisibility(View.VISIBLE);
         layoutSignedIn.setVisibility(View.INVISIBLE);
@@ -245,6 +256,7 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick (R.id.btn_sign_in)
     public void onSignInClicked() {
+        signInClicked = true;
         apiClient.connect();
     }
 
@@ -255,6 +267,7 @@ public class MainActivity extends AppCompatActivity
             Games.signOut(apiClient);
             apiClient.disconnect();
         }
+        showSignInButton();
     }
 
     @Override
