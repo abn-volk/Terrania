@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity
         btnPlayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigationView.setCheckedItem(R.id.nav_play);
-                showPlayFragment();
+                Intent intent = new Intent(MainActivity.this, PlayActivity.class);
+                startActivity(intent);
             }
         });
         header.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +153,9 @@ public class MainActivity extends AppCompatActivity
             homeView.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_play) {
-            showPlayFragment();
+            Intent intent = new Intent(this, PlayActivity.class);
+            startActivity(intent);
+            return false;
 
         } else if (id == R.id.nav_about) {
             Fragment aboutFragment = getSupportFragmentManager().findFragmentByTag("about");
@@ -167,16 +169,6 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void showPlayFragment() {
-        Fragment playFragment = getSupportFragmentManager().findFragmentByTag("play");
-        if (playFragment == null) playFragment = new PlayFragment();
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, playFragment, "play")
-                .commit();
-        homeView.setVisibility(View.GONE);
     }
 
     private boolean resolvingConnectionFailure = false;
@@ -242,7 +234,7 @@ public class MainActivity extends AppCompatActivity
     private void showSignInButton() {
         // Display the sign-in button
         layoutNotSignedIn.setVisibility(View.VISIBLE);
-        layoutSignedIn.setVisibility(View.INVISIBLE);
+        layoutSignedIn.setVisibility(View.GONE);
         prompt.setText(R.string.msg_not_signed_in);
         textUserName.setText(R.string.app_name);
         Picasso.with(getApplicationContext())

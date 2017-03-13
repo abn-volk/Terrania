@@ -6,4 +6,30 @@
         <item>@string/ct2cp</item>
         <item>@string/cp2ct</item>
     </string-array>
+    <string-array name="game_values">
+        <item>c2f</item>
+        <item>f2c</item>
+        <item>ct2cp</item>
+        <item>cp2ct</item>
+    </string-array>
+    <string-array name="desc_game_modes">
+        <item>@string/desc_c2f</item>
+        <item>@string/desc_f2c</item>
+        <item>@string/desc_ct2cp</item>
+        <item>@string/desc_cp2ct</item>
+    </string-array>
+    <string-array name="continents">
+        <item>@string/radio_africa</item>
+        <item>@string/radio_america</item>
+        <item>@string/radio_asia</item>
+        <item>@string/radio_europe</item>
+        <item>@string/radio_oceania</item>
+        <item>@string/radio_world</item>
+    </string-array>
+    <string-array name="number_of_questions">
+        <item>@string/number_10</item>
+        <item>@string/number_20</item>
+        <item>@string/number_30</item>
+        <item>@string/number_all</item>
+    </string-array>
 </resources>

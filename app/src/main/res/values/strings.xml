@@ -33,7 +33,7 @@
     <string name="f2c">Flag to country</string>
     <string name="ct2cp">Country to capital</string>
     <string name="cp2ct">Capital to country</string>
-    <string name="label_choose_number">Number of countries</string>
+    <string name="label_choose_number">Countries</string>
     <string name="number_10">10</string>
     <string name="number_20">20</string>
     <string name="number_30">30</string>
@@ -41,10 +41,6 @@
     <string name="btn_go">Go!</string>
     <string name="msg_oceania_countries">Oceania only has 14 countries. Therefore, choosing 20 or 30 countries is equivalent to \"All\".</string>
     <string name="title_game_modes">Game modes</string>
-    <string name="msg_game_modes">• Country to flag: For each question, you are given a country. Find the flag for that country.
-        \n• Flag to country: For each question, you are given a flag. Choose the country that has the flag.
-        \n• Country to capital: For each question, you are given a country and four capitals. Find the correct capital.
-        \n• Capital to country: For each question, you are given a capital city. Which country does it belong to?</string>
     <string name="ok">OK</string>
     <string name="msg_welcome_terrania">Welcome to Terrania!</string>
     <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world.         Test your knowledge with quizzes about country names, flags, population and country area.</string>
@@ -58,4 +54,9 @@
     <string name="btn_sign_out">Sign out</string>
     <string name="btn_achievements">View achievements</string>
     <string name="btn_leaderboards">Go to leaderboards</string>
+    <string name="title_activity_play">Play</string>
+    <string name="desc_c2f">For each question, you are given a country. Find the flag for that country.</string>
+    <string name="desc_f2c">For each question, you are given a flag. Choose the country that has the flag.</string>
+    <string name="desc_ct2cp">For each question, you are given a country and four capitals. Find the correct capital.</string>
+    <string name="desc_cp2ct">For each question, you are given a capital city. Which country does it belong to?</string>
 </resources>
