@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -162,13 +163,9 @@ public class MainActivity extends AppCompatActivity
             return false;
 
         } else if (id == R.id.nav_about) {
-            Fragment aboutFragment = getSupportFragmentManager().findFragmentByTag("about");
-            if (aboutFragment == null) aboutFragment = new AboutFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                    .replace(R.id.fragment_holder, aboutFragment, "about")
-                    .commit();
-            homeView.setVisibility(View.GONE);
+            DialogFragment dialog = new AboutFragment();
+            dialog.show(getSupportFragmentManager(), null);
+            return false;
         }
 
         drawer.closeDrawer(GravityCompat.START);
