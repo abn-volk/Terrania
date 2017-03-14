@@ -59,4 +59,6 @@
     <string name="desc_f2c">For each question, you are given a flag. Choose the country that has the flag.</string>
     <string name="desc_ct2cp">For each question, you are given a country and four capitals. Find the correct capital.</string>
     <string name="desc_cp2ct">For each question, you are given a capital city. Which country does it belong to?</string>
+    <string name="next">Next</string>
+    <string name="question_flag_to_country">This is the flag of…</string>
 </resources>

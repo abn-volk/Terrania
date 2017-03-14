@@ -1,4 +1,4 @@
-package net.volangvang.terrania;
+package net.volangvang.terrania.main;
 
 import android.content.Intent;
 import android.content.IntentSender;
@@ -26,6 +26,9 @@ import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.games.Games;
 import com.squareup.picasso.Picasso;
 
+import net.volangvang.terrania.AboutFragment;
+import net.volangvang.terrania.LearnFragment;
+import net.volangvang.terrania.R;
 import net.volangvang.terrania.play.PlayActivity;
 
 import butterknife.BindView;
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
         apiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES).build();

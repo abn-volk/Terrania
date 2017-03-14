@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -16,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            app:cardElevation="4dp"
             app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             android:visibility="gone"
             tools:visibility="visible">
@@ -94,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
             tools:visibility="visible">
             <LinearLayout
@@ -114,7 +118,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
                 <Button
                     android:id="@+id/btn_achievements"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/btn_achievements"
                     android:layout_gravity="center"
