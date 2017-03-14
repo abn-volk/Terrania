@@ -1,4 +1,4 @@
-package net.volangvang.terrania;
+package net.volangvang.terrania.play;
 
 
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import net.volangvang.terrania.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

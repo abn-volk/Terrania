@@ -26,6 +26,8 @@ import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.games.Games;
 import com.squareup.picasso.Picasso;
 
+import net.volangvang.terrania.play.PlayActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
