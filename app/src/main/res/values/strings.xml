@@ -19,8 +19,6 @@
     <string name="header_acknowledgements">Acknowledgements</string>
     <string name="body_acknowledgements">• World countries information is provided by <a href="https://www.worlddata.info">WorldData.info</a> and <a href="https://github.com/mledoze/countries">mledoze/countries on GitHub</a>.\n• World flags are taken from <a href="http://flagpedia.net/">Flagpedia</a>.\n• The flags of Palestine, Myanmar, Peru, Bolivia and South Sudan are sourced from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="radio_africa">Africa</string>
     <string name="label_choose_continent">Continent</string>
     <string name="radio_america">America</string>
@@ -61,4 +59,7 @@
     <string name="desc_cp2ct">For each question, you are given a capital city. Which country does it belong to?</string>
     <string name="next">Next</string>
     <string name="question_flag_to_country">This is the flag of…</string>
+    <string name="title_activity_learn">Learn</string>
+    <string name="hint_search">Country name</string>
+    <string name="search">Search</string>
 </resources>
