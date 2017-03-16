@@ -51,7 +51,17 @@
             android:name=".data.CountryProvider"
             android:authorities="net.volangvang.terrania.data.VowelProvider"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity
+            android:name=".learn.CountryActivity"
+            android:label="@string/title_activity_country"
+            android:parentActivityName=".learn.LearnActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.volangvang.terrania.learn.LearnActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -4,13 +4,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="nav_home">Home</string>
     <string name="nav_learn">Learn</string>
     <string name="nav_play">Play</string>
     <string name="nav_about">About</string>
     <string name="msg_welcome">Welcome</string>
-    <string name="msg_login_prompt">Tap here to sign in</string>
     <string name="msg_logout_prompt">Tap here to sign out</string>
 
     <string name="header_team">Meet the Team</string>
@@ -26,20 +24,18 @@
     <string name="radio_europe">Europe</string>
     <string name="radio_oceania">Oceania</string>
     <string name="radio_world">World</string>
-    <string name="label_choose_game_mode">Game mode</string>
     <string name="c2f">Country to flag</string>
     <string name="f2c">Flag to country</string>
     <string name="ct2cp">Country to capital</string>
     <string name="cp2ct">Capital to country</string>
     <string name="label_choose_number">Countries</string>
-    <string name="number_10">10</string>
-    <string name="number_20">20</string>
-    <string name="number_30">30</string>
+    <string name="number_10" translatable="false">10</string>
+    <string name="number_20" translatable="false">20</string>
+    <string name="number_30" translatable="false">30</string>
     <string name="number_all">All</string>
     <string name="btn_go">Go!</string>
     <string name="msg_oceania_countries">Oceania only has 14 countries. Therefore, choosing 20 or 30 countries is equivalent to \"All\".</string>
-    <string name="title_game_modes">Game modes</string>
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="msg_welcome_terrania">Welcome to Terrania!</string>
     <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world.         Test your knowledge with quizzes about country names, flags, population and country area.</string>
     <string name="btn_play_now">Play now</string>
@@ -62,4 +58,18 @@
     <string name="title_activity_learn">Learn</string>
     <string name="hint_search">Country name</string>
     <string name="search">Search</string>
+    <string name="title_activity_country">CountryActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_maps_or_browser">Please install a map or browser app on your device in order to see the map.</string>
+    <string name="info_capital">Capital: %s</string>
+    <string name="info_area">Area: %d km²</string>
+    <string name="info_population">Population: %d</string>
+    <string name="info_coastline">Coastline: %d km</string>
+    <string name="info_currency">Currency: %s</string>
+    <string name="info_dialling_prefix">Dialling prefix: %d</string>
+    <string name="info_birth_rate">Birth rate: %.1f per mille</string>
+    <string name="info_death_rate">Death rate: %.1f per mille</string>
+    <string name="info_life_expectancy">Life expectancy: %.1f years</string>
+
+
 </resources>

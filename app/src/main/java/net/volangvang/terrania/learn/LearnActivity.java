@@ -1,5 +1,6 @@
 package net.volangvang.terrania.learn;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -17,8 +18,12 @@ import net.volangvang.terrania.R;
 import net.volangvang.terrania.data.CountryContract;
 import net.volangvang.terrania.data.CountryProvider;
 
+import java.util.Locale;
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LearnActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
     @BindView(R.id.country_list) RecyclerView countryList;
@@ -54,8 +59,21 @@ public class LearnActivity extends AppCompatActivity implements LoaderManager.Lo
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (Locale.getDefault().getLanguage().equals("vi"))
         return new CursorLoader(getApplicationContext(), CountryProvider.CONTENT_URI,
-                CountryContract.PROJECTION_LITE, CountryContract.CountryEntry.COLUMN_NAME + " LIKE ?", new String[] {"%" + filter + "%"}, CountryContract.CountryEntry.COLUMN_NAME);
+                CountryContract.PROJECTION_LITE_VI, CountryContract.CountryEntry.COLUMN_NAME_VI +
+                " LIKE ?", new String[] {"%" + filter + "%"}, CountryContract.CountryEntry.COLUMN_NAME_VI);
+        else return new CursorLoader(getApplicationContext(), CountryProvider.CONTENT_URI,
+                CountryContract.PROJECTION_LITE, CountryContract.CountryEntry.COLUMN_NAME +
+                " LIKE ?", new String[] {"%" + filter + "%"}, CountryContract.CountryEntry.COLUMN_NAME);
+    }
+
+    @OnClick(R.id.fab_random)
+    public void onFabClick() {
+        int id = 1 + new Random().nextInt(195);
+        Intent intent = new Intent(this, CountryActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
     @Override

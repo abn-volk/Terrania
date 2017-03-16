@@ -12,13 +12,17 @@ import android.support.annotation.NonNull;
 public class CountryProvider extends ContentProvider {
     private static final String AUTHORITY = "net.volangvang.terrania.data.VowelProvider";
     private static final String BASE_PATH = "countries";
+    private static final String ITEM_BASE_PATH = "countries/#";
     public static final int COUNTRIES = 100;
+    public static final int COUNTRY = 300;
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
     public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/terrania-country";
 
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         uriMatcher.addURI(AUTHORITY, BASE_PATH, COUNTRIES);
+        uriMatcher.addURI(AUTHORITY, ITEM_BASE_PATH, COUNTRY);
+
     }
 
     private CountryDatabase database;
@@ -34,7 +38,7 @@ public class CountryProvider extends ContentProvider {
 
     @Override
     public String getType(@NonNull Uri uri) {
-        if (uriMatcher.match(uri) == COUNTRIES) return CONTENT_TYPE;
+        if (uriMatcher.match(uri) == COUNTRIES || uriMatcher.match(uri) == COUNTRY) return CONTENT_TYPE;
         return "";
     }
 
@@ -43,7 +47,12 @@ public class CountryProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setTables(CountryContract.CountryEntry.TABLE_NAME);
-        return builder.query(database.getReadableDatabase(), projection, selection, selectionArgs, null, null, sortOrder);
+        switch (uriMatcher.match(uri)) {
+            case 100:
+                return builder.query(database.getReadableDatabase(), projection, selection, selectionArgs, null, null, sortOrder);
+            default:
+                return builder.query(database.getReadableDatabase(), projection, "_ID = "  + uri.getLastPathSegment(), selectionArgs, null, null, sortOrder);
+        }
     }
 
     @Override

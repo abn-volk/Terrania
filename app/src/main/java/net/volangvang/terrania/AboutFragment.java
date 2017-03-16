@@ -29,7 +29,7 @@ public class AboutFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(R.layout.fragment_about)
                 .setTitle(R.string.nav_about)
-                .setPositiveButton(android.R.string.ok, null);
+                .setPositiveButton(R.string.ok, null);
         return builder.create();
     }
 
