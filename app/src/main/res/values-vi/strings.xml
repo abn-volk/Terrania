@@ -2,15 +2,15 @@
 <resources>
     <string name="app_name">Terrania</string>
     <string name="action_settings">Cài đặt</string>
-    <string name="body_acknowledgements">• Thông tin địa lý về các quốc gia được cung cấp bởi <a href="https://www.worlddata.info">WorldData.info</a> cùng <a href="https://github.com/mledoze/countries">mledoze/countries trên GitHub</a>. • Quốc kỳ được lấy từ <a href="http://flagpedia.net/">Flagpedia</a>. • Quốc kỳ của Palestine, Myanmar, Peru, Bolivia và South Sudan được lấy từ <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
+    <string name="body_acknowledgements">• Thông tin địa lý về các quốc gia được cung cấp bởi <a href="https://www.worlddata.info">WorldData.info</a> cùng <a href="https://github.com/mledoze/countries">mledoze/countries trên GitHub</a>.\n• Quốc kỳ được lấy từ <a href="http://flagpedia.net/">Flagpedia</a>.\n• Quốc kỳ của Palestine, Myanmar, Peru, Bolivia và South Sudan được lấy từ <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
     <string name="msg_logout_prompt">Chạm để đăng xuất</string>
     <string name="msg_oceania_countries">Châu Đại Dương chỉ có đến 14 quốc gia. Vì vậy, chọn 20 hoặc 30 câu hỏi tương đồng với \"Tất cả\"</string>
     <string name="msg_not_signed_in">Bạn chưa đăng nhập!</string>
     <string name="msg_profile_prompt">Chạm để đăng xuất</string>
-    <string name="msg_sign_in_details">Đăng nhập để thưởng thức tối đa trò chơi, ví dụ như thành tích và bảng xếp hạng</string>
+    <string name="msg_sign_in_details">Đăng nhập để thưởng thức tối đa trò chơi, ví dụ như thành tích và bảng xếp hạng.</string>
     <string name="msg_signed_in">Xin chào bạn %s</string>
     <string name="msg_welcome">Xin chào</string>
-    <string name="msg_welcome_details">Terrania là một trò chơi đố vui về các quốc gia trên toàn thế giới.         Hãy thử kiến thức của bạn cùng những câu hỏi về tên các quốc gia, quốc kỳ, dân số cũng như diện tích.</string>
+    <string name="msg_welcome_details">Terrania là một trò chơi đố vui về các quốc gia trên toàn thế giới. Hãy thử kiến thức của bạn cùng những câu hỏi về tên các quốc gia, quốc kỳ, dân số cũng như diện tích.</string>
     <string name="msg_welcome_terrania">Chào mừng bạn đến với Terrania!</string>
     <string name="nav_about">Giới thiệu</string>
     <string name="nav_home">Trang chủ</string>
@@ -42,21 +42,21 @@
     <string name="search">Tìm kiếm</string>
     <string name="title_activity_learn">Tìm hiểu</string>
     <string name="title_activity_play">Chơi</string>
-    <string name="desc_c2f">Mỗi câu hỏi đưa ra một quốc gia. Tìm quốc kỳ của quốc gia đó</string>
+    <string name="desc_c2f">Mỗi câu hỏi đưa ra một quốc gia. Tìm quốc kỳ của quốc gia đó.</string>
     <string name="header_acknowledgements">Trích dẫn và tham khảo</string>
     <string name="desc_cp2ct">Mỗi câu hỏi đưa ra một thành phố thủ đô. Đó là thủ đô của nước nào?</string>
-    <string name="desc_ct2cp">Mỗi câu hỏi đưa ra một quốc gia và bốn thành phố thủ đô. Tìm thủ đô chính xác của quốc gia đó</string>
-    <string name="desc_f2c">Mỗi câu hỏi đưa ra một lá cờ. Đó là quốc kỳ của quốc gia nào</string>
+    <string name="desc_ct2cp">Mỗi câu hỏi đưa ra một quốc gia và bốn thành phố thủ đô. Tìm thủ đô chính xác của quốc gia đó.</string>
+    <string name="desc_f2c">Mỗi câu hỏi đưa ra một lá cờ. Đó là quốc kỳ của quốc gia nào?</string>
     <string name="info_area">Diện tích: %d km²</string>
-    <string name="info_birth_rate">Tỉ lệ sinh đẻ: %.1f phần ngàn</string>
+    <string name="info_birth_rate">Tỉ lệ sinh: %.1f phần nghìn</string>
     <string name="info_capital">Thủ đô: %s</string>
     <string name="info_coastline">Đường bờ biển: %d km</string>
-    <string name="info_currency">Đồng tiền: %s</string>
-    <string name="info_death_rate">Tỉ lệ người chết: %.1f phần ngàn</string>
-    <string name="info_dialling_prefix">Mã điện thoại</string>
+    <string name="info_currency">Đơn vị tiền tệ: %s</string>
+    <string name="info_death_rate">Tỉ lệ tử: %.1f phần nghìn</string>
+    <string name="info_dialling_prefix">Mã vùng điện thoại: %d</string>
     <string name="info_life_expectancy">Tuổi thọ trung bình: %.1f năm</string>
     <string name="info_population">Dân số: %d</string>
     <string name="msg_sign_in_error">Việc đăng nhập gặp vấn đề. Xin thử lại sau.</string>
-    <string name="body_team">Chuyên ngành Khoa Học Máy Tính thuộc trường <a href="http://uet.vnu.edu.vn">Trường Đại học Công nghệ</a>, Đại học Quốc gia Hà Nội:      • Phạm Nguyễn Hoàng • Nguyễn Văn Tiến • Đỗ Quang Thành • Nguyễn Văn Thắng</string>
+    <string name="body_team">Các sinh viên chuyên ngành Khoa học Máy tính thuộc <a href="http://uet.vnu.edu.vn">Trường Đại học Công nghệ</a>, Đại học Quốc gia Hà Nội:\n• Phạm Nguyễn Hoàng\n• Nguyễn Văn Tiến\n• Đỗ Quang Thành\n• Nguyễn Văn Thắng</string>
     <string name="no_maps_or_browser">Vui lòng cài đặt bản đồ hoặc một ứng dụng trình duyệt trên điện thoại để có thể xem được bản đồ này</string>
 </resources>

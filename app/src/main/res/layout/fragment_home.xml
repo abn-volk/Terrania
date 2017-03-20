@@ -32,6 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/msg_welcome_terrania"
+                    android:gravity="center"
                     android:paddingBottom="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
                 <TextView
@@ -74,10 +75,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/msg_not_signed_in"
+                    android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:text="@string/msg_sign_in_details"/>
                 <com.google.android.gms.common.SignInButton
@@ -114,6 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/msg_signed_in"
+                    android:gravity="center"
                     android:paddingBottom="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
                 <Button

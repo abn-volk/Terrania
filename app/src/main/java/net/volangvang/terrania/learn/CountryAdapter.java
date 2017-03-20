@@ -18,6 +18,8 @@ import com.squareup.picasso.Picasso;
 import net.volangvang.terrania.R;
 import net.volangvang.terrania.data.CountryContract;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,8 +45,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if (cursor != null && !cursor.isClosed()) {
             cursor.moveToPosition(position);
+            int countryColumn = cursor.getColumnIndex(Locale.getDefault().getLanguage().equals("vi") ?
+                    CountryContract.CountryEntry.COLUMN_NAME_VI : CountryContract.CountryEntry.COLUMN_NAME);
             final int id = cursor.getInt(cursor.getColumnIndex(CountryContract.CountryEntry._ID));
-            String name = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.COLUMN_NAME));
+            String name = cursor.getString(countryColumn);
             String code = cursor.getString(cursor.getColumnIndex(CountryContract.CountryEntry.COLUMN_COUNTRY_CODE));
             holder.countryName.setText(name);
             int imgId = activity.getResources().getIdentifier("country_" + code.toLowerCase(), "drawable", activity.getPackageName());

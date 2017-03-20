@@ -73,6 +73,7 @@ public class CountryActivity extends AppCompatActivity {
             float birthRate = cursor.getFloat(cursor.getColumnIndex(CountryContract.CountryEntry.COLUMN_BIRTH_RATE));
             float deathRate = cursor.getFloat(cursor.getColumnIndex(CountryContract.CountryEntry.COLUMN_DEATH_RATE));
             float lifeExpectancy = cursor.getFloat(cursor.getColumnIndex(CountryContract.CountryEntry.COLUMN_LIFE_EXPECTANCY));
+            cursor.close();
             Picasso.with(this)
                     .load(getResources().getIdentifier("country_" + countryCode.toLowerCase(), "drawable", getPackageName()))
                     .into(flag);
@@ -80,7 +81,6 @@ public class CountryActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    String x = String.format(Locale.US, "geo:%f,%f?z=9", latitude, longitude);
                     Uri uri = Uri.parse(String.format(Locale.US, "geo:%f,%f?z=8", latitude, longitude));
                     intent.setData(uri);
                     if (intent.resolveActivity(getPackageManager()) != null) {
