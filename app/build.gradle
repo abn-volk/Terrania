@@ -15,7 +15,7 @@ android {
         applicationId "net.volangvang.terrania"
         minSdkVersion 15
         targetSdkVersion 25
-        resConfigs "en"
+        resConfigs "en", "vi"
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,7 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            /*signingConfig signingConfigss.VLV*/
+            /*signingConfig signingConfigs.VLV*/
         }
     }
 }

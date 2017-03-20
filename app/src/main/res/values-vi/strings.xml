@@ -16,7 +16,6 @@
     <string name="nav_home">Trang chủ</string>
     <string name="nav_learn">Tìm hiểu</string>
     <string name="nav_play">Chơi</string>
-    <string name="number_10"></string>
     <string name="number_all">Tất cả</string>
     <string name="question_flag_to_country">Đây là cờ của nước nào?</string>
     <string name="radio_africa">Châu Phi</string>
@@ -36,7 +35,6 @@
     <string name="header_team">Nhóm phát triển</string>
     <string name="hint_search">Tìm tên quốc gia</string>
     <string name="label_choose_continent">Châu lục</string>
-    <string name="label_choose_game_mode"></string>
     <string name="label_choose_number">Số câu</string>
     <string name="next">Tiếp</string>
     <string name="radio_oceania">Châu Đại Dương</string>
@@ -44,7 +42,6 @@
     <string name="search">Tìm kiếm</string>
     <string name="title_activity_learn">Tìm hiểu</string>
     <string name="title_activity_play">Chơi</string>
-    <string name="title_game_modes"></string>
     <string name="desc_c2f">Mỗi câu hỏi đưa ra một quốc gia. Tìm quốc kỳ của quốc gia đó</string>
     <string name="header_acknowledgements">Trích dẫn và tham khảo</string>
     <string name="desc_cp2ct">Mỗi câu hỏi đưa ra một thành phố thủ đô. Đó là thủ đô của nước nào?</string>
@@ -61,8 +58,5 @@
     <string name="info_population">Dân số: %d</string>
     <string name="msg_sign_in_error">Việc đăng nhập gặp vấn đề. Xin thử lại sau.</string>
     <string name="body_team">Chuyên ngành Khoa Học Máy Tính thuộc trường <a href="http://uet.vnu.edu.vn">Trường Đại học Công nghệ</a>, Đại học Quốc gia Hà Nội:      • Phạm Nguyễn Hoàng • Nguyễn Văn Tiến • Đỗ Quang Thành • Nguyễn Văn Thắng</string>
-    <string name="navigation_drawer_close">Đóng bảng điều hướng</string>
-    <string name="navigation_drawer_open">Mở bảng điều hướng</string>
     <string name="no_maps_or_browser">Vui lòng cài đặt bản đồ hoặc một ứng dụng trình duyệt trên điện thoại để có thể xem được bản đồ này</string>
-    <string name="title_activity_country">CountryActivity</string>
 </resources>
