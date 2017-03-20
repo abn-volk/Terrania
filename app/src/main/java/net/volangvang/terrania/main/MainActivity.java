@@ -220,6 +220,18 @@ public class MainActivity extends AppCompatActivity
         showSignInButton();
     }
 
+    @OnClick (R.id.btn_achievements)
+    public void onAchievementsClicked() {
+        startActivityForResult(Games.Achievements.getAchievementsIntent(apiClient),
+                5312);
+    }
+
+    @OnClick (R.id.btn_leaderboards)
+    public void onLeaderboardsClicked() {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(apiClient,
+                getString(R.string.leaderboard_country_to_flag_world)), 2391);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
