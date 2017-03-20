@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
+    /*signingConfigs {
         VLV {
             keyAlias 'TRIG'
             keyPassword 'TRIGGERED'
             storeFile file('/home/pnh/Android/vlv.jks')
             storePassword 'volangvang'
         }
-    }
+    }*/
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -26,7 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.VLV
+            /*signingConfig signingConfigss.VLV*/
         }
     }
 }
