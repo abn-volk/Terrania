@@ -228,8 +228,7 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick (R.id.btn_leaderboards)
     public void onLeaderboardsClicked() {
-        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(apiClient,
-                getString(R.string.leaderboard_country_to_flag_world)), 2391);
+        startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(apiClient), 2391);
     }
 
     @Override

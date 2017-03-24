@@ -2,7 +2,6 @@ package net.volangvang.terrania.play;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import net.volangvang.terrania.R;
 
@@ -34,7 +35,6 @@ public class GameModeFragment extends Fragment {
     private String gameModeDescription;
     @BindView(R.id.game_mode_label) TextView label;
     @BindView(R.id.game_mode_desc) TextView description;
-    @Nullable
     @BindView(R.id.game_mode_img) ImageView img;
     @BindView(R.id.spinner_continent) Spinner continentSpinner;
     @BindView(R.id.spinner_number) Spinner numberSpinner;
@@ -94,6 +94,22 @@ public class GameModeFragment extends Fragment {
                 //TODO: Start activity!
             }
         });
+        if (getResources().getConfiguration().screenHeightDp >= 480) {
+            switch (gameModeValue) {
+                case "c2f":
+                    img.setImageResource(R.drawable.c2f);
+                    break;
+                case "f2c":
+                    Picasso.with(getContext()).load(R.drawable.f2c).into(img);
+                    break;
+                case "ct2cp":
+                    Picasso.with(getContext()).load(R.drawable.ct2cp).into(img);
+                    break;
+                case "cp2ct":
+                    Picasso.with(getContext()).load(R.drawable.cp2ct).into(img);
+                    break;
+            }
+        }
         return fragmentView;
     }
 

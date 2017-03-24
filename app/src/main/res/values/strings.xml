@@ -58,7 +58,7 @@
     <string name="title_activity_learn">Learn</string>
     <string name="hint_search">Country name</string>
     <string name="search">Search</string>
-    <string name="title_activity_country">CountryActivity</string>
+    <string name="title_activity_country">Country</string>
     <string name="action_settings">Settings</string>
     <string name="no_maps_or_browser">Please install a map or browser app on your device in order to see the map.</string>
     <string name="info_capital">Capital: %s</string>
@@ -70,6 +70,9 @@
     <string name="info_birth_rate">Birth rate: %.1f per mille</string>
     <string name="info_death_rate">Death rate: %.1f per mille</string>
     <string name="info_life_expectancy">Life expectancy: %.1f years</string>
-
+    <string name="c2f_value" translatable="false">c2f</string>
+    <string name="f2c_value" translatable="false">f2c</string>
+    <string name="ct2cp_value" translatable="false">ct2cp</string>
+    <string name="cp2ct_value" translatable="false">cp2ct</string>
 
 </resources>

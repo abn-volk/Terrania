@@ -3,13 +3,11 @@ package net.volangvang.terrania.learn;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,9 +43,6 @@ public class CountryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_country);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
         int id = getIntent().getIntExtra("id", 1);
         Cursor cursor = getContentResolver().query(Uri.withAppendedPath(CountryProvider.CONTENT_URI, Integer.toString(id)),
                 null, null, null, null);

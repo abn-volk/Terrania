@@ -32,7 +32,7 @@
             android:name=".play.PlayActivity"
             android:label="@string/title_activity_play"
             android:parentActivityName=".main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.DarkStatusBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.volangvang.terrania.main.MainActivity" />
@@ -41,7 +41,7 @@
             android:name=".learn.LearnActivity"
             android:label="@string/title_activity_learn"
             android:parentActivityName=".main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.DarkStatusBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.volangvang.terrania.main.MainActivity" />

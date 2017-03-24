@@ -16,8 +16,10 @@
         android:id="@+id/game_mode_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="300dp"
-        android:maxHeight="300dp" />
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        tools:src="@drawable/c2f"
+        android:maxHeight="150dp" />
     <TextView
         android:id="@+id/game_mode_label"
         android:layout_width="wrap_content"
