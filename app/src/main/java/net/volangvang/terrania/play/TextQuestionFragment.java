@@ -1,54 +1,65 @@
 package net.volangvang.terrania.play;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import net.volangvang.terrania.R;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TextQuestionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TextQuestionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+
+
 public class TextQuestionFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String QUESTION = "question";
+    private static final String CHOICE1 = "choice1";
+    private static final String CHOICE2 = "choice2";
+    private static final String CHOICE3 = "choice3";
+    private static final String CHOICE4 = "choice4";
+    private static final String TYPE = "type";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String question;
+    private List<String> choices;
+    private String type;
 
-    private OnFragmentInteractionListener mListener;
+    @BindViews({R.id.answer_1, R.id.answer_2, R.id.answer_3, R.id.answer_4})
+    List<CardView> answers;
+    @BindViews({R.id.answer_1_txt, R.id.answer_2_txt, R.id.answer_3_txt, R.id.answer_4_txt})
+    List<TextView> answerTxts;
+    @BindView(R.id.question_text)
+    TextView questionText;
+    @BindView(R.id.btn_next)
+    Button btnNext;
+
+    private GameActivity activity;
 
     public TextQuestionFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TextQuestionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TextQuestionFragment newInstance(String param1, String param2) {
+    public static TextQuestionFragment newInstance(String question, String choice1, String choice2, String choice3, String choice4, String type) {
         TextQuestionFragment fragment = new TextQuestionFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(QUESTION, question);
+        args.putString(CHOICE1, choice1);
+        args.putString(CHOICE2, choice2);
+        args.putString(CHOICE3, choice3);
+        args.putString(CHOICE4, choice4);
+        args.putString(TYPE, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,54 +68,86 @@ public class TextQuestionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            question = getArguments().getString(QUESTION);
+            String choice1 = getArguments().getString(CHOICE1);
+            String choice2 = getArguments().getString(CHOICE2);
+            String choice3 = getArguments().getString(CHOICE3);
+            String choice4 = getArguments().getString(CHOICE4);
+            type = getArguments().getString(TYPE);
+            choices = new ArrayList<>(4);
+            choices.add(choice1);
+            choices.add(choice2);
+            choices.add(choice3);
+            choices.add(choice4);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_text_question, container, false);
+        View view = inflater.inflate(R.layout.fragment_text_question, container, false);
+        ButterKnife.bind(this, view);
+        if (type.equals("country2capital"))
+            questionText.setText(getString(R.string.question_country_to_capital, question));
+        else
+            questionText.setText(getString(R.string.question_capital_to_country, question));
+
+        for (int i=0; i<4; i++) {
+            answerTxts.get(i).setText(choices.get(i));
+            final int finalI = i;
+            answers.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    for (CardView cv : answers) {
+                        cv.setClickable(false);
+                    }
+                    ColorStateList originalColor = answers.get(finalI).getCardBackgroundColor();
+                    answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorSelected));
+                    int rightAnswer = activity.answer(finalI);
+                    if (rightAnswer == -1) {
+                        Toast.makeText(getContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
+                        for (CardView cv : answers) {
+                            cv.setClickable(true);
+                        }
+                        answers.get(finalI).setCardBackgroundColor(originalColor);
+                    }
+                    else {
+                        if (rightAnswer != finalI)
+                            answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
+                        answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                        btnNext.setVisibility(View.VISIBLE);
+                        btnNext.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                btnNext.setEnabled(false);
+                                int result = activity.nextQuestion();
+                                if (result == -1)
+                                    btnNext.setEnabled(true);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof GameActivity) {
+            activity = (GameActivity) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must be GameActivity");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        activity = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

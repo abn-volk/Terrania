@@ -37,10 +37,14 @@ public class LocalServer implements Server {
 
     @Override
     public Pair<Status, String> newGame(String type, String continent, String language, int count) {
+        Log.d("Terrania", "Opened local server with arguments: " + type + continent + language + Integer.toString(count));
         id = UUID.randomUUID().toString();
         current = -1;
-        String nameColumn = ("vi".equals(language))? CountryContract.CountryEntry.COLUMN_NAME_VI : CountryContract.CountryEntry.COLUMN_NAME;
-        String capitalColumn = ("vi".equals(language))? CountryContract.CountryEntry.COLUMN_CAPITAL : CountryContract.CountryEntry.COLUMN_CAPITAL_VI;
+        questions = new ArrayList<>(count);
+        answers = new ArrayList<>(count);
+
+        String nameColumn = ("vn".equals(language))? CountryContract.CountryEntry.COLUMN_NAME_VI : CountryContract.CountryEntry.COLUMN_NAME;
+        String capitalColumn = ("vn".equals(language))? CountryContract.CountryEntry.COLUMN_CAPITAL : CountryContract.CountryEntry.COLUMN_CAPITAL_VI;
         String countryCodeColumn = CountryContract.CountryEntry.COLUMN_COUNTRY_CODE;
         String questionColumn = null;
         String answerColumn = null;
@@ -95,10 +99,7 @@ public class LocalServer implements Server {
                 maxCount = 14;
                 break;
         }
-        if (count > maxCount) {
-            Log.d("Terrania", "Requested " + Integer.toString(count) + "questions, but only " + Integer.toString(maxCount) + " are available.");
-            return new Pair<>(Status.ERROR, null);
-        }
+        if (count > maxCount) count = maxCount;
         Cursor cursor;
         if ("World".equals(continent)) {
             cursor = context.getContentResolver().query(CountryProvider.CONTENT_URI,
@@ -111,13 +112,12 @@ public class LocalServer implements Server {
 
         List<Integer> indices = new ArrayList<>(range.subList(0, maxCount));
         Collections.shuffle(indices);
-        List<Question> questionList = new ArrayList<>(count);
         // Create questions
         for (int i=0; i<count; i++) {
             cursor.moveToPosition(indices.get(i));
             String question = cursor.getString(cursor.getColumnIndex(questionColumn));
             Answer rightAnswer = new Answer(cursor.getString(cursor.getColumnIndex(answerColumn)), choiceType);
-            List<Integer> choiceIndices = getOtherChoices(0, maxCount, i);
+            List<Integer> choiceIndices = getOtherChoices(0, maxCount, indices.get(i));
             List<Answer> choices = new ArrayList<>(4);
             for (int ind : choiceIndices) {
                 cursor.moveToPosition(ind);
@@ -138,6 +138,7 @@ public class LocalServer implements Server {
 
     @Override
     public Pair<Status, Question> getQuestion(String gameID) {
+        current ++;
         if (!id.equals(gameID)) {
             Log.d("Terrania", "Game ID mismatch: Expected " + id + ", got " + gameID);
             return new Pair<>(Status.ERROR, null);
@@ -149,7 +150,6 @@ public class LocalServer implements Server {
         if (current == questions.size()) {
             return new Pair<>(Status.COMPLETED, null);
         }
-        current ++;
         return new Pair<>(Status.OK, questions.get(current));
     }
 

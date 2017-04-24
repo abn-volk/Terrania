@@ -5,4 +5,8 @@ public class UserAnswer {
     public UserAnswer(int answer) {
         this.answer = answer;
     }
+
+    public int getAnswer() {
+        return answer;
+    }
 }

@@ -62,6 +62,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.volangvang.terrania.learn.LearnActivity" />
         </activity>
+        <activity
+            android:name=".play.GameActivity"
+            android:label="@string/title_activity_game"
+            android:parentActivityName=".play.PlayActivity"
+            android:theme="@style/AppTheme.NoActionBar.DarkStatusBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.volangvang.terrania.play.PlayActivity" />
+        </activity>
     </application>
 
 </manifest>

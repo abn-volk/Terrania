@@ -54,7 +54,10 @@
     <string name="desc_ct2cp">For each question, you are given a country and four cities. Find the correct capital.</string>
     <string name="desc_cp2ct">For each question, you are given a capital city. Which country does it belong to?</string>
     <string name="next">Next</string>
+    <string name="question_country_to_flag">Which is the flag of %s?</string>
     <string name="question_flag_to_country">This is the flag of…</string>
+    <string name="question_country_to_capital">Which is the capital of %s?</string>
+    <string name="question_capital_to_country">%s is the capital of…</string>
     <string name="title_activity_learn">Learn</string>
     <string name="hint_search">Country name</string>
     <string name="search">Search</string>
@@ -70,9 +73,14 @@
     <string name="info_birth_rate">Birth rate: %.1f per mille</string>
     <string name="info_death_rate">Death rate: %.1f per mille</string>
     <string name="info_life_expectancy">Life expectancy: %.1f years</string>
-    <string name="c2f_value" translatable="false">c2f</string>
-    <string name="f2c_value" translatable="false">f2c</string>
-    <string name="ct2cp_value" translatable="false">ct2cp</string>
-    <string name="cp2ct_value" translatable="false">cp2ct</string>
+    <string name="c2f_value" translatable="false">country2flag</string>
+    <string name="f2c_value" translatable="false">flag2country</string>
+    <string name="ct2cp_value" translatable="false">country2capital</string>
+    <string name="cp2ct_value" translatable="false">capital2country</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="msg_network_error">An error has occurred. Please try again.</string>
+
+    <string name="msg_game_over">Game over</string>
+    <string name="msg_your_score">Your score is</string>
 
 </resources>

@@ -50,7 +50,4 @@ public class PlayActivity extends AppCompatActivity {
             return 4;
         }
     }
-
-
-
 }

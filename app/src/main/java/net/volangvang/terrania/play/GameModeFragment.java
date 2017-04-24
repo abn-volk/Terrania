@@ -1,6 +1,7 @@
 package net.volangvang.terrania.play;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -89,9 +90,21 @@ public class GameModeFragment extends Fragment {
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String selectedContinent = (String) continentSpinner.getSelectedItem();
-                String selectedNumber = (String) continentSpinner.getSelectedItem();
+                int continentId = continentSpinner.getSelectedItemPosition();
+                String[] continents = new String[] {"Africa", "America", "Asia", "Europe", "Oceania", "World"};
+                int[] maxCounts = new int[] {54, 35, 48, 44, 14, 195};
+                int count;
+                String selectedContinent = continents[continentId];
+                String selectedNumber = (String) numberSpinner.getSelectedItem();
+                if (selectedNumber.equals("All"))
+                    count = maxCounts[continentId];
+                else count = Integer.parseInt(selectedNumber);
                 //TODO: Start activity!
+                Intent intent = new Intent(getContext(), GameActivity.class);
+                intent.putExtra(GameActivity.EXTRA_COUNT, count);
+                intent.putExtra(GameActivity.EXTRA_MODE, gameModeValue);
+                intent.putExtra(GameActivity.EXTRA_CONTINENT, selectedContinent);
+                startActivity(intent);
             }
         });
         if (getResources().getConfiguration().screenHeightDp >= 480) {

@@ -56,7 +56,7 @@ public class CountryProvider extends ContentProvider {
             case 300:
                 return builder.query(database.getReadableDatabase(), projection, "_ID = "  + uri.getLastPathSegment(), selectionArgs, null, null, sortOrder);
             case 500:
-                return builder.query(database.getReadableDatabase(), projection, "region = " + uri.getLastPathSegment(), selectionArgs, null, null, sortOrder);
+                return builder.query(database.getReadableDatabase(), projection, "region = \"" + uri.getLastPathSegment() + "\"", selectionArgs, null, null, sortOrder);
             default:
                 return null;
         }
