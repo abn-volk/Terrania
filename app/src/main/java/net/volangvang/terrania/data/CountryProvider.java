@@ -12,17 +12,20 @@ import android.support.annotation.NonNull;
 public class CountryProvider extends ContentProvider {
     private static final String AUTHORITY = "net.volangvang.terrania.data.VowelProvider";
     private static final String BASE_PATH = "countries";
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
+    public static final Uri CONTINENT_URI = Uri.parse("content://" + AUTHORITY + "/" + "continent");
     private static final String ITEM_BASE_PATH = "countries/#";
+    private static final String CONTINENT_BASE_PATH = "continent/*";
     public static final int COUNTRIES = 100;
     public static final int COUNTRY = 300;
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
+    public static final int CONTINENT = 500;
     public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/terrania-country";
 
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         uriMatcher.addURI(AUTHORITY, BASE_PATH, COUNTRIES);
         uriMatcher.addURI(AUTHORITY, ITEM_BASE_PATH, COUNTRY);
-
+        uriMatcher.addURI(AUTHORITY, CONTINENT_BASE_PATH, CONTINENT);
     }
 
     private CountryDatabase database;
@@ -50,8 +53,12 @@ public class CountryProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case 100:
                 return builder.query(database.getReadableDatabase(), projection, selection, selectionArgs, null, null, sortOrder);
-            default:
+            case 300:
                 return builder.query(database.getReadableDatabase(), projection, "_ID = "  + uri.getLastPathSegment(), selectionArgs, null, null, sortOrder);
+            case 500:
+                return builder.query(database.getReadableDatabase(), projection, "region = " + uri.getLastPathSegment(), selectionArgs, null, null, sortOrder);
+            default:
+                return null;
         }
     }
 
