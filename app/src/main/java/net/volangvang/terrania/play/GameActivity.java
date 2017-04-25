@@ -3,12 +3,18 @@ package net.volangvang.terrania.play;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
 import net.volangvang.terrania.R;
 import net.volangvang.terrania.play.data.Question;
@@ -21,7 +27,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final String EXTRA_MODE = "mode";
     public static final String EXTRA_COUNT = "count";
     public static final String EXTRA_CONTINENT = "continent";
@@ -33,12 +39,18 @@ public class GameActivity extends AppCompatActivity {
     private Server server;
     private String id = "";
     private boolean completed = false;
+    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
+
+        googleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES).build();
+        googleApiClient.connect();
 
         fragment = (ServerFragment) getSupportFragmentManager().findFragmentByTag(TAG);
         if (fragment == null) {
@@ -75,15 +87,33 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
     public int answer(int index) {
         // Returns the index of the right answer or -1 if an error has occurred.
         Pair<Server.Status, UserAnswer> response = server.answerQuestion(new UserAnswer(index));
         if (response.first == Server.Status.OK) {
-            if (response.second.getAnswer() == index)
+            if (response.second.getAnswer() == index) {
                 fragment.bumpScore();
+                if (googleApiClient != null && googleApiClient.isConnected()) {
+                    Games.Achievements.increment(googleApiClient, getString(R.string.achievement_a_thousand_miles), 1);
+                }
+            }
+            else {
+                if (googleApiClient != null && googleApiClient.isConnected()) {
+                    // Baby steps - first wrong answer
+                    Games.Achievements.unlock(googleApiClient, getString(R.string.achievement_baby_steps));
+                }
+            }
             return response.second.getAnswer();
         }
-        else return -1;
+        else {
+            return -1;
+        }
     }
 
     public int nextQuestion() {
@@ -94,6 +124,16 @@ public class GameActivity extends AppCompatActivity {
         }
         else if (response.first == Server.Status.COMPLETED) {
             completed = true;
+            if (googleApiClient != null && googleApiClient.isConnected()) {
+                // Unlock First timer - Play the first game
+                Games.Achievements.unlock(googleApiClient, getString(R.string.achievement_first_timer));
+                if (fragment.getScore() == 195 && fragment.getMode().contains("flag")) {
+                    // Vexillologist - perfect score on flags
+                    Games.Achievements.unlock(googleApiClient, getString(R.string.achievement_vexillologist));
+                }
+                Games.Achievements.increment(googleApiClient, getString(R.string.achievement_frequent_flyer), 1);
+                Games.Achievements.increment(googleApiClient, getString(R.string.achievement_obsessed), 1);
+            }
             Fragment f = ResultFragment.newInstance(fragment.getScore());
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, f).commit();
             return -2;
@@ -115,7 +155,7 @@ public class GameActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
                     break;
                 case "country2capital":
-                        frag = TextQuestionFragment.newInstance(question, choice0, choice1, choice2, choice3, mode);
+                    frag = TextQuestionFragment.newInstance(question, choice0, choice1, choice2, choice3, mode);
                     getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
                     break;
                 case "capital2country":
@@ -144,5 +184,19 @@ public class GameActivity extends AppCompatActivity {
             builder.create().show();
         }
         else super.onBackPressed();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
