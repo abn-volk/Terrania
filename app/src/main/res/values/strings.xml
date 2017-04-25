@@ -82,5 +82,8 @@
 
     <string name="msg_game_over">Game over</string>
     <string name="msg_your_score">Your score is</string>
+    <string name="msg_quit_game_prompt">Quit this game?</string>
+    <string name="msg_quit_game_detail">If you quit this game, your score will be lost.</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

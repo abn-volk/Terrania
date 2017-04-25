@@ -1,9 +1,11 @@
 package net.volangvang.terrania.play;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ public class GameActivity extends AppCompatActivity {
     private ServerFragment fragment;
     private Server server;
     private String id = "";
+    private boolean completed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class GameActivity extends AppCompatActivity {
             return -1;
         }
         else if (response.first == Server.Status.COMPLETED) {
+            completed = true;
             Fragment f = ResultFragment.newInstance(fragment.getScore());
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, f).commit();
             return -2;
@@ -123,7 +127,22 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        if (!completed) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.msg_quit_game_prompt)
+                    .setMessage(R.string.msg_quit_game_detail)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            GameActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, null);
+            builder.create().show();
+        }
+        else super.onBackPressed();
+    }
 }

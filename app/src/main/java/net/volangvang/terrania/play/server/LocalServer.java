@@ -44,7 +44,7 @@ public class LocalServer implements Server {
         answers = new ArrayList<>(count);
 
         String nameColumn = ("vn".equals(language))? CountryContract.CountryEntry.COLUMN_NAME_VI : CountryContract.CountryEntry.COLUMN_NAME;
-        String capitalColumn = ("vn".equals(language))? CountryContract.CountryEntry.COLUMN_CAPITAL : CountryContract.CountryEntry.COLUMN_CAPITAL_VI;
+        String capitalColumn = ("vn".equals(language))? CountryContract.CountryEntry.COLUMN_CAPITAL_VI : CountryContract.CountryEntry.COLUMN_CAPITAL;
         String countryCodeColumn = CountryContract.CountryEntry.COLUMN_COUNTRY_CODE;
         String questionColumn = null;
         String answerColumn = null;
@@ -78,7 +78,6 @@ public class LocalServer implements Server {
                 break;
         }
         if (questionColumn == null) {
-            Log.d("Terrania", "a column name is null. Check game type arg.");
             return new Pair<>(Status.ERROR, null);
         }
 
@@ -140,11 +139,9 @@ public class LocalServer implements Server {
     public Pair<Status, Question> getQuestion(String gameID) {
         current ++;
         if (!id.equals(gameID)) {
-            Log.d("Terrania", "Game ID mismatch: Expected " + id + ", got " + gameID);
             return new Pair<>(Status.ERROR, null);
         }
         if (questions == null) {
-            Log.d("Terrania", "Game not initialised!");
             return new Pair<>(Status.ERROR, null);
         }
         if (current == questions.size()) {
@@ -156,7 +153,6 @@ public class LocalServer implements Server {
     @Override
     public Pair<Status, UserAnswer> answerQuestion(UserAnswer answer) {
         if (answers == null) {
-            Log.d("Terrania", "Game not initialised!");
             return new Pair<>(Status.ERROR, null);
         }
         return new Pair<>(Status.OK, new UserAnswer(answers.get(current)));
