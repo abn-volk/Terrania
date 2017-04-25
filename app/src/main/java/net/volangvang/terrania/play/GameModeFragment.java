@@ -54,7 +54,6 @@ public class GameModeFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment GameModeFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static GameModeFragment newInstance(String param1, String param2, String desc) {
         GameModeFragment fragment = new GameModeFragment();
         Bundle args = new Bundle();
@@ -99,7 +98,6 @@ public class GameModeFragment extends Fragment {
                 if (selectedNumber.equals("All"))
                     count = maxCounts[continentId];
                 else count = Integer.parseInt(selectedNumber);
-                //TODO: Start activity!
                 Intent intent = new Intent(getContext(), GameActivity.class);
                 intent.putExtra(GameActivity.EXTRA_COUNT, count);
                 intent.putExtra(GameActivity.EXTRA_MODE, gameModeValue);
@@ -109,16 +107,16 @@ public class GameModeFragment extends Fragment {
         });
         if (getResources().getConfiguration().screenHeightDp >= 480) {
             switch (gameModeValue) {
-                case "c2f":
-                    img.setImageResource(R.drawable.c2f);
+                case "country2flag":
+                    Picasso.with(getContext()).load(R.drawable.c2f).into(img);
                     break;
-                case "f2c":
+                case "flag2country":
                     Picasso.with(getContext()).load(R.drawable.f2c).into(img);
                     break;
-                case "ct2cp":
+                case "country2capital":
                     Picasso.with(getContext()).load(R.drawable.ct2cp).into(img);
                     break;
-                case "cp2ct":
+                case "capital2country":
                     Picasso.with(getContext()).load(R.drawable.cp2ct).into(img);
                     break;
             }

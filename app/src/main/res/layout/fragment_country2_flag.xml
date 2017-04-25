@@ -25,10 +25,11 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:paddingBottom="16dp"
+            android:gravity="center"
             tools:text="Which one is the flag of Tajikistan?"/>
         <android.support.v7.widget.CardView
             android:id="@+id/answer_1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:background="?selectableItemBackground"
@@ -51,7 +52,7 @@
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:id="@+id/answer_2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:background="?selectableItemBackground"
@@ -74,7 +75,7 @@
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:id="@+id/answer_3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:background="?selectableItemBackground"
@@ -97,7 +98,7 @@
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:id="@+id/answer_4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:background="?selectableItemBackground"

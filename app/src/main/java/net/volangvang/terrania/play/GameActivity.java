@@ -148,19 +148,19 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             switch (mode) {
                 case "country2flag":
                     frag = Country2FlagFragment.newInstance(question, choice0, choice1, choice2, choice3, true);
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                     break;
                 case "flag2country":
                     frag = Flag2CountryFragment.newInstance(question, choice0, choice1, choice2, choice3, true);
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                     break;
                 case "country2capital":
                     frag = TextQuestionFragment.newInstance(question, choice0, choice1, choice2, choice3, mode);
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                     break;
                 case "capital2country":
                     frag = TextQuestionFragment.newInstance(question, choice0, choice1, choice2, choice3, mode);
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, frag).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                     break;
             }
             return 0;

@@ -25,6 +25,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:paddingBottom="16dp"
+            android:gravity="center"
             tools:text="Which one is the flag of Tajikistan?"/>
         <LinearLayout
             android:id="@+id/answer_1"

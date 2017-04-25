@@ -25,6 +25,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:paddingBottom="16dp"
+            android:gravity="center"
             tools:text="Which one is the flag of Tajikistan?"/>
         <LinearLayout
             android:id="@+id/answer_1"
@@ -51,8 +52,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:maxHeight="150dp"
-                    tools:layout_height="150dp"
+                    android:maxHeight="125dp"
+                    tools:layout_height="125dp"
                     android:adjustViewBounds="true"/>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
@@ -75,8 +76,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:maxHeight="150dp"
-                    tools:layout_height="150dp"
+                    android:maxHeight="125dp"
+                    tools:layout_height="125dp"
                     android:adjustViewBounds="true"/>
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -105,8 +106,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:maxHeight="150dp"
-                    tools:layout_height="150dp"
+                    android:maxHeight="125dp"
+                    tools:layout_height="125dp"
                     android:adjustViewBounds="true"/>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
@@ -129,8 +130,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:maxHeight="150dp"
-                    tools:layout_height="150dp"
+                    android:maxHeight="125dp"
+                    tools:layout_height="125dp"
                     android:adjustViewBounds="true"/>
             </android.support.v7.widget.CardView>
         </LinearLayout>
