@@ -16,6 +16,7 @@ public class ServerFragment extends Fragment {
     private String mode;
     private int score = 0;
     private String gameID;
+    private String continent;
 
     public ServerFragment() {
         // Required empty public constructor
@@ -43,6 +44,14 @@ public class ServerFragment extends Fragment {
 
     public void setMode(String mode) {
         this.mode = mode;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 
     @Override
