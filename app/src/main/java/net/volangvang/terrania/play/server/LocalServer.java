@@ -151,7 +151,7 @@ public class LocalServer implements Server {
     }
 
     @Override
-    public Pair<Status, UserAnswer> answerQuestion(UserAnswer answer) {
+    public Pair<Status, UserAnswer> answerQuestion(String gameID, UserAnswer answer) {
         if (answers == null) {
             return new Pair<>(Status.ERROR, null);
         }

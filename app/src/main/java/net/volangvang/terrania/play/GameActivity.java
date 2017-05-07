@@ -97,7 +97,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public int answer(int index) {
         // Returns the index of the right answer or -1 if an error has occurred.
-        Pair<Server.Status, UserAnswer> response = server.answerQuestion(new UserAnswer(index));
+        Pair<Server.Status, UserAnswer> response = server.answerQuestion(id, new UserAnswer(index));
         if (response.first == Server.Status.OK) {
             if (response.second.getAnswer() == index) {
                 fragment.bumpScore();
@@ -237,10 +237,10 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
         }
         else {
             String question = response.second.getQuestion();
-            String choice0 = response.second.getAnswers().get(0).getChoice();
-            String choice1 = response.second.getAnswers().get(1).getChoice();
-            String choice2 = response.second.getAnswers().get(2).getChoice();
-            String choice3 = response.second.getAnswers().get(3).getChoice();
+            String choice0 = response.second.getAnswers().get(0).getData();
+            String choice1 = response.second.getAnswers().get(1).getData();
+            String choice2 = response.second.getAnswers().get(2).getData();
+            String choice3 = response.second.getAnswers().get(3).getData();
             Fragment frag;
             switch (mode) {
                 case "country2flag":
