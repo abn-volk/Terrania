@@ -1,0 +1,3 @@
+[submodule "Terrania-internal"]
+	path = Terrania-internal
+	url = https://github.com/chitoge/Terrania-internal
