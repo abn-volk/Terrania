@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 
 import net.volangvang.terrania.R;
+import net.volangvang.terrania.play.data.Answer;
 import net.volangvang.terrania.play.data.GameID;
 import net.volangvang.terrania.play.data.Question;
 import net.volangvang.terrania.play.data.UserAnswer;
@@ -118,10 +119,10 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
         // Returns the index of the right answer or -1 if an error has occurred.
         return server.answerQuestion(id, new UserAnswer(index)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).
-                doOnSuccess(new Consumer<UserAnswer>() {
+                doOnSuccess(new Consumer<Answer>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull UserAnswer userAnswer) throws Exception {
-                        if (userAnswer.getAnswer() == index) {
+                    public void accept(@io.reactivex.annotations.NonNull Answer answer) throws Exception {
+                        if (answer.getCorrect_answer() == index) {
                             fragment.bumpScore();
                             if (googleApiClient != null && googleApiClient.isConnected()) {
                                 Games.Achievements.increment(googleApiClient, getString(R.string.achievement_a_thousand_miles), 1);
@@ -134,10 +135,10 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                         }
                     }
                 })
-                .map(new Function<UserAnswer, Integer>() {
+                .map(new Function<Answer, Integer>() {
                     @Override
-                    public Integer apply(@io.reactivex.annotations.NonNull UserAnswer userAnswer) throws Exception {
-                        return userAnswer.getAnswer();
+                    public Integer apply(@io.reactivex.annotations.NonNull Answer answer) throws Exception {
+                        return answer.getCorrect_answer();
                     }
                 });
     }
@@ -166,7 +167,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public Single<Question> nextQuestion() {
-        return server.getQuestion(id);
+        return server.getQuestion(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
 
@@ -191,10 +192,11 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void displayQuestion(Question question) {
+
         if (question.getQuestion() == null)
             Toast.makeText(getApplicationContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
         else {
-            if (question.getQuestion().isEmpty()) {
+            if (question.getQuestion().getData() == null) {
                 Toast.makeText(getApplicationContext(), "nextQuestion game over", Toast.LENGTH_SHORT).show();
                 // Completed
                 completed = true;
@@ -308,7 +310,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             } else {
                 // Success
                 Toast.makeText(getApplicationContext(), "nextQuestion success", Toast.LENGTH_SHORT).show();
-                String question1 = question.getQuestion();
+                String question1 = question.getQuestion().getData();
                 String choice0 = question.getAnswers().get(0).getData();
                 String choice1 = question.getAnswers().get(1).getData();
                 String choice2 = question.getAnswers().get(2).getData();

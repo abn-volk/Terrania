@@ -1,7 +1,9 @@
 package net.volangvang.terrania.play.server;
 
+import net.volangvang.terrania.play.data.Answer;
 import net.volangvang.terrania.play.data.GameID;
 import net.volangvang.terrania.play.data.GameRequest;
+import net.volangvang.terrania.play.data.Item;
 import net.volangvang.terrania.play.data.Question;
 import net.volangvang.terrania.play.data.UserAnswer;
 
@@ -47,7 +49,7 @@ public class WebServer implements Server {
                     @Override
                     public Question apply(@NonNull Throwable throwable) throws Exception {
                         if (throwable instanceof HttpException) {
-                            return new Question("", null);
+                            return new Question(new Item(null, null), null);
                         }
                         else return new Question(null, null);
                     }
@@ -56,8 +58,8 @@ public class WebServer implements Server {
     }
 
     @Override
-    public Single<UserAnswer> answerQuestion(String gameID, UserAnswer answer) {
-        Single<UserAnswer> call = server.answerQuestion(gameID, answer);
+    public Single<Answer> answerQuestion(String gameID, UserAnswer answer) {
+        Single<Answer> call = server.answerQuestion(gameID, answer);
         call.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         return call;

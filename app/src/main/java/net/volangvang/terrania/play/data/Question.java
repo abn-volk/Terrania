@@ -3,19 +3,19 @@ package net.volangvang.terrania.play.data;
 import java.util.List;
 
 public class Question {
-    public Question(String question, List<Answer> answers) {
+    public Question(Item question, List<Item> answers) {
         this.question = question;
         this.answers = answers;
     }
 
-    private String question;
-    private List<Answer> answers;
+    private Item question;
+    private List<Item> answers;
 
-    public String getQuestion() {
+    public Item getQuestion() {
         return question;
     }
 
-    public List<Answer> getAnswers() {
+    public List<Item> getAnswers() {
         return answers;
     }
 }

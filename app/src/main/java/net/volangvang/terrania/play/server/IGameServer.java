@@ -1,5 +1,6 @@
 package net.volangvang.terrania.play.server;
 
+import net.volangvang.terrania.play.data.Answer;
 import net.volangvang.terrania.play.data.GameID;
 import net.volangvang.terrania.play.data.GameRequest;
 import net.volangvang.terrania.play.data.Question;
@@ -19,5 +20,5 @@ public interface IGameServer {
     Single<Question> getQuestion(@Path("id")String hashedId);
 
     @POST("{id}/answer")
-    Single<UserAnswer> answerQuestion(@Path("id") String hashedId, @Body UserAnswer answer);
+    Single<Answer> answerQuestion(@Path("id") String hashedId, @Body UserAnswer answer);
 }

@@ -123,30 +123,30 @@ public class Flag2CountryFragment extends Fragment {
                         public void onSuccess(@NonNull Integer rightAnswer) {
                             if (rightAnswer != finalI)
                                 answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
-                            answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
-                            btnNext.setVisibility(View.VISIBLE);
-                            btnNext.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    btnNext.setEnabled(false);
-                                    activity.nextQuestion().subscribe(new SingleObserver<Question>() {
-                                        @Override
-                                        public void onSubscribe(@NonNull Disposable d) {
+                                answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                                btnNext.setVisibility(View.VISIBLE);
+                                btnNext.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        btnNext.setEnabled(false);
+                                        activity.nextQuestion().subscribe(new SingleObserver<Question>() {
+                                            @Override
+                                            public void onSubscribe(@NonNull Disposable d) {
 
-                                        }
+                                            }
 
-                                        @Override
-                                        public void onSuccess(@NonNull Question question) {
-                                            activity.displayQuestion(question);
-                                            if (question.getQuestion() == null)
-                                                btnNext.setEnabled(true);
-                                        }
+                                            @Override
+                                            public void onSuccess(@NonNull Question question) {
+                                                if (question.getQuestion() == null)
+                                                    btnNext.setEnabled(true);
+                                                activity.displayQuestion(question);
+                                            }
 
-                                        @Override
-                                        public void onError(@NonNull Throwable e) {
+                                            @Override
+                                            public void onError(@NonNull Throwable e) {
 
-                                        }
-                                    });
+                                            }
+                                        });
                                 }
                             });
                         }
