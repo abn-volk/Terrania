@@ -1,14 +1,15 @@
 package net.volangvang.terrania.play.server;
 
-import android.support.v4.util.Pair;
-
+import net.volangvang.terrania.play.data.GameID;
 import net.volangvang.terrania.play.data.Question;
 import net.volangvang.terrania.play.data.UserAnswer;
 
+import io.reactivex.Single;
+
 public interface Server {
-    Pair<Status, String> newGame(String type, String continent, String language, int count);
-    Pair<Status, Question> getQuestion(String gameID);
-    Pair<Status, UserAnswer> answerQuestion(String gameID, UserAnswer answer);
+    Single<GameID> newGame(String type, String continent, String language, int count);
+    Single<Question> getQuestion(String gameID);
+    Single<UserAnswer> answerQuestion(String gameID, UserAnswer answer);
 
     enum Status {
         OK,

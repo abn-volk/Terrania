@@ -1,12 +1,12 @@
 package net.volangvang.terrania.play.data;
 
 public class GameID {
-    private String hashedId;
-    public GameID(String hashedId) {
-        this.hashedId = hashedId;
+    private String hashed_id;
+    public GameID(String hashed_id) {
+        this.hashed_id = hashed_id;
     }
 
-    public String getHashedId() {
-        return hashedId;
+    public String getHashed_id() {
+        return hashed_id;
     }
 }

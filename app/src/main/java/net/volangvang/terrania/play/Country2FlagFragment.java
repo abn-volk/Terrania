@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import net.volangvang.terrania.R;
+import net.volangvang.terrania.play.data.Question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import io.reactivex.SingleObserver;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 
 
 public class Country2FlagFragment extends Fragment {
@@ -106,30 +110,55 @@ public class Country2FlagFragment extends Fragment {
                     for (CardView cv : answers) {
                         cv.setClickable(false);
                     }
-                    ColorStateList originalColor = answers.get(finalI).getCardBackgroundColor();
+                    final ColorStateList originalColor = answers.get(finalI).getCardBackgroundColor();
                     answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorSelected));
-                    int rightAnswer = activity.answer(finalI);
-                    if (rightAnswer == -1) {
-                        Toast.makeText(getContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
-                        for (CardView cv : answers) {
-                            cv.setClickable(true);
+                    activity.answer(finalI).subscribe(new SingleObserver<Integer>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
                         }
-                        answers.get(finalI).setCardBackgroundColor(originalColor);
-                    } else {
-                        if (rightAnswer != finalI)
-                            answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
-                        answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
-                        btnNext.setVisibility(View.VISIBLE);
-                        btnNext.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                btnNext.setEnabled(false);
-                                int result = activity.nextQuestion();
-                                if (result == -1)
-                                    btnNext.setEnabled(true);
+
+                        @Override
+                        public void onSuccess(@NonNull Integer rightAnswer) {
+                            if (rightAnswer != finalI)
+                                answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
+                            answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                            btnNext.setVisibility(View.VISIBLE);
+                            btnNext.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    btnNext.setEnabled(false);
+                                    activity.nextQuestion().subscribe(new SingleObserver<Question>() {
+                                        @Override
+                                        public void onSubscribe(@NonNull Disposable d) {
+
+                                        }
+
+                                        @Override
+                                        public void onSuccess(@NonNull Question question) {
+                                            activity.displayQuestion(question);
+                                            if (question.getQuestion() == null)
+                                                btnNext.setEnabled(true);
+                                        }
+
+                                        @Override
+                                        public void onError(@NonNull Throwable e) {
+
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            Toast.makeText(getContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
+                            for (CardView cv : answers) {
+                                cv.setClickable(true);
                             }
-                        });
-                    }
+                            answers.get(finalI).setCardBackgroundColor(originalColor);
+                        }
+                    });
                 }
             });
         }
