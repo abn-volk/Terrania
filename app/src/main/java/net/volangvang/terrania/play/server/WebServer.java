@@ -12,7 +12,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.HttpException;
+import okhttp3.OkHttpClient;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,7 +27,11 @@ public class WebServer implements Server {
     private UserAnswer currentAnswer;
 
     public WebServer() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.followRedirects(false);
+        OkHttpClient httpClient = builder.build();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://139.59.116.119:5000/api/games/")
+                .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
         server = retrofit.create(IGameServer.class);
@@ -42,16 +47,23 @@ public class WebServer implements Server {
 
     @Override
     public Single<Question> getQuestion(String gameID) {
-        Single<Question> call = server.getQuestion(gameID);
-        call.subscribeOn(Schedulers.io())
+        Single<Question> call = server.getQuestion(gameID).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map(new Function<Response<Question>, Question>() {
+                    @Override
+                    public Question apply(@NonNull Response<Question> response) throws Exception {
+                        if (response.code() == 303)
+                            return new Question(new Item(null, null), null);
+                        else if (response.code() == 200) {
+                            return response.body();
+                        }
+                        return new Question(null, null);
+                    }
+                })
                 .onErrorReturn(new Function<Throwable, Question>() {
                     @Override
                     public Question apply(@NonNull Throwable throwable) throws Exception {
-                        if (throwable instanceof HttpException) {
-                            return new Question(new Item(null, null), null);
-                        }
-                        else return new Question(null, null);
+                        return new Question(null, null);
                     }
                 });
         return call;

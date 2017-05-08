@@ -118,8 +118,8 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     public Single<Integer> answer(final int index) {
         // Returns the index of the right answer or -1 if an error has occurred.
         return server.answerQuestion(id, new UserAnswer(index)).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).
-                doOnSuccess(new Consumer<Answer>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(new Consumer<Answer>() {
                     @Override
                     public void accept(@io.reactivex.annotations.NonNull Answer answer) throws Exception {
                         if (answer.getCorrect_answer() == index) {
@@ -197,7 +197,6 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             Toast.makeText(getApplicationContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
         else {
             if (question.getQuestion().getData() == null) {
-                Toast.makeText(getApplicationContext(), "nextQuestion game over", Toast.LENGTH_SHORT).show();
                 // Completed
                 completed = true;
                 if (googleApiClient != null && googleApiClient.isConnected()) {
@@ -309,7 +308,6 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, f).commit();
             } else {
                 // Success
-                Toast.makeText(getApplicationContext(), "nextQuestion success", Toast.LENGTH_SHORT).show();
                 String question1 = question.getQuestion().getData();
                 String choice0 = question.getAnswers().get(0).getData();
                 String choice1 = question.getAnswers().get(1).getData();

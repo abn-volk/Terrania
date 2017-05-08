@@ -7,6 +7,7 @@ import net.volangvang.terrania.play.data.Question;
 import net.volangvang.terrania.play.data.UserAnswer;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -17,7 +18,7 @@ public interface IGameServer {
     Single<GameID> newGame(@Body GameRequest request);
 
     @GET("{id}/question")
-    Single<Question> getQuestion(@Path("id")String hashedId);
+    Single<Response<Question>> getQuestion(@Path("id")String hashedId);
 
     @POST("{id}/answer")
     Single<Answer> answerQuestion(@Path("id") String hashedId, @Body UserAnswer answer);
