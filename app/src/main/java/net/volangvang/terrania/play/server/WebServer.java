@@ -21,10 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WebServer implements Server {
 
     private IGameServer server;
-    private String id = "";
-    private Question currentQuestion;
-    private Status currentStatus;
-    private UserAnswer currentAnswer;
 
     public WebServer() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

@@ -2,10 +2,13 @@ package net.volangvang.terrania.play;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +103,11 @@ public class Flag2CountryFragment extends Fragment {
             Picasso.with(getContext())
                     .load(getResources().getIdentifier("country_" + question.toLowerCase(), "drawable", getContext().getPackageName()))
                     .into(flag);
+        }
+        else {
+            byte[] decodedString = Base64.decode(question, Base64.DEFAULT);
+            Bitmap decodedBytes = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            flag.setImageBitmap(decodedBytes);
         }
 
         for (int i=0; i<4; i++) {

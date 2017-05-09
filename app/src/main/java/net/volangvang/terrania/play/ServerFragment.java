@@ -17,6 +17,15 @@ public class ServerFragment extends Fragment {
     private int score = 0;
     private String gameID;
     private String continent;
+    private boolean local;
+
+    public boolean isLocal() {
+        return local;
+    }
+
+    public void setLocal(boolean local) {
+        this.local = local;
+    }
 
     public ServerFragment() {
         // Required empty public constructor
@@ -53,6 +62,8 @@ public class ServerFragment extends Fragment {
     public void setContinent(String continent) {
         this.continent = continent;
     }
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

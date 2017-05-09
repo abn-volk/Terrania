@@ -17,4 +17,9 @@ public class Answer {
         return current_score;
     }
 
+    public Answer(int correct_answer, int recorded_answer) {
+        this.correct_answer = correct_answer;
+        this.recorded_answer = recorded_answer;
+        this.current_score = 0;
+    }
 }

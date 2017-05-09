@@ -50,6 +50,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     private String continent;
     private boolean completed = false;
     private GoogleApiClient googleApiClient;
+    private boolean isLocal = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,10 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             fragment.setServer(svr);
             fragment.setMode(mode);
             fragment.setContinent(continent);
+            fragment.setLocal(isLocal);
             server = fragment.getServer();
             getSupportFragmentManager().beginTransaction().add(fragment, TAG).commit();
-            String language = (Locale.getDefault().getLanguage().equals("vi"))? "vn" : "en";
+            String language = (Locale.getDefault().getLanguage().equals("vi"))? "vi" : "en";
             server.newGame(mode, continent, language, count).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<GameID>() {
                     @Override
@@ -106,6 +108,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             id = fragment.getGameID();
             server = fragment.getServer();
             mode = fragment.getMode();
+            isLocal = fragment.isLocal();
         }
     }
 
@@ -316,11 +319,11 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 Fragment frag;
                 switch (mode) {
                     case "country2flag":
-                        frag = Country2FlagFragment.newInstance(question1, choice0, choice1, choice2, choice3, true);
+                        frag = Country2FlagFragment.newInstance(question1, choice0, choice1, choice2, choice3, isLocal);
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                         break;
                     case "flag2country":
-                        frag = Flag2CountryFragment.newInstance(question1, choice0, choice1, choice2, choice3, true);
+                        frag = Flag2CountryFragment.newInstance(question1, choice0, choice1, choice2, choice3, isLocal);
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                         break;
                     case "country2capital":
