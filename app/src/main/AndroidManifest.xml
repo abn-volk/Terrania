@@ -64,7 +64,6 @@
         </activity>
         <activity
             android:name=".play.GameActivity"
-            android:label="@string/title_activity_game"
             android:parentActivityName=".play.PlayActivity"
             android:theme="@style/AppTheme.NoActionBar.DarkStatusBar">
             <meta-data

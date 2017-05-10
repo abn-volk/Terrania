@@ -62,4 +62,13 @@
     <string name="navigation_drawer_close">Đóng khay điều hướng</string>
     <string name="navigation_drawer_open">Mở khay điều hướng</string>
     <string name="title_activity_country">Quốc gia</string>
+    <string name="cancel">Huỷ</string>
+    <string name="msg_game_over"></string>
+    <string name="msg_network_error">Đã xảy ra lỗi. Vui lòng thử lại sau.</string>
+    <string name="msg_quit_game_detail">Nếu bạn thoát, điểm số của bạn sẽ không được lưu.</string>
+    <string name="msg_quit_game_prompt">Bỏ cuộc chơi?</string>
+    <string name="msg_your_score">Điểm số của bạn là</string>
+    <string name="question_capital_to_country">%s là thủ đô của nước nào?</string>
+    <string name="question_country_to_capital">Thủ đô của %s là gì?</string>
+    <string name="question_country_to_flag">Đâu là quốc kì của %s?</string>
 </resources>

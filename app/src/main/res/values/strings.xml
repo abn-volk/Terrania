@@ -77,7 +77,6 @@
     <string name="f2c_value" translatable="false">flag2country</string>
     <string name="ct2cp_value" translatable="false">country2capital</string>
     <string name="cp2ct_value" translatable="false">capital2country</string>
-    <string name="title_activity_game">GameActivity</string>
     <string name="msg_network_error">An error has occurred. Please try again.</string>
 
     <string name="msg_game_over">Game over</string>
