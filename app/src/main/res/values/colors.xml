@@ -7,5 +7,5 @@
     <color name="colorWrong">#ff5252</color>
     <color name="colorRight">#00e676</color>
     <color name="colorSelected">#448aff</color>
-    <color name="colorWhiteTransparent">#ffffffcc</color>
+    <color name="colorWhiteTransparent">#ddffffff</color>
 </resources>

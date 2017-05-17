@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.design.widget.CoordinatorLayout
     android:id="@+id/fragment_holder"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
     tools:context="net.volangvang.terrania.play.GameActivity">
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

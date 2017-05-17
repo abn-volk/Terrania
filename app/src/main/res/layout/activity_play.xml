@@ -28,9 +28,9 @@
         android:id="@+id/play_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg"
         android:clipToPadding="false"
         android:overScrollMode="never"
+        android:background="@drawable/bg"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingStart="@dimen/card_padding"
         android:paddingEnd="@dimen/card_padding"/>
