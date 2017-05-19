@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/bg"
     tools:context="net.volangvang.terrania.play.PlayActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
+        android:background="@android:color/transparent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:elevation="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -30,7 +31,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:background="@drawable/bg"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingStart="@dimen/card_padding"
         android:paddingEnd="@dimen/card_padding"/>

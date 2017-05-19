@@ -36,6 +36,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static net.volangvang.terrania.R.id.score;
+
 public class GameActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final String EXTRA_MODE = "mode";
     public static final String EXTRA_COUNT = "count";
@@ -213,99 +215,101 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                     Games.Achievements.increment(googleApiClient, getString(R.string.achievement_obsessed), 1);
                 }
                 int score = fragment.getScore();
-                int leaderboardId = -1;
-                switch (fragment.getMode()) {
-                    case "country2flag":
-                        switch (fragment.getContinent()) {
-                            case "Africa":
-                                leaderboardId = R.string.leaderboard_country_to_flag_africa;
-                                break;
-                            case "America":
-                                leaderboardId = R.string.leaderboard_country_to_flag_america;
-                                break;
-                            case "Asia":
-                                leaderboardId = R.string.leaderboard_country_to_flag_asia;
-                                break;
-                            case "Europe":
-                                leaderboardId = R.string.leaderboard_country_to_flag_europe;
-                                break;
-                            case "Oceania":
-                                leaderboardId = R.string.leaderboard_country_to_flag_oceania;
-                                break;
-                            case "World":
-                                leaderboardId = R.string.leaderboard_country_to_flag_world;
-                                break;
-                        }
-                        break;
-                    case "flag2country":
-                        switch (fragment.getContinent()) {
-                            case "Africa":
-                                leaderboardId = R.string.leaderboard_flag_to_country_africa;
-                                break;
-                            case "America":
-                                leaderboardId = R.string.leaderboard_flag_to_country_america;
-                                break;
-                            case "Asia":
-                                leaderboardId = R.string.leaderboard_flag_to_country_asia;
-                                break;
-                            case "Europe":
-                                leaderboardId = R.string.leaderboard_flag_to_country_europe;
-                                break;
-                            case "Oceania":
-                                leaderboardId = R.string.leaderboard_flag_to_country_oceania;
-                                break;
-                            case "World":
-                                leaderboardId = R.string.leaderboard_flag_to_country_world;
-                                break;
-                        }
-                        break;
-                    case "country2capital":
-                        switch (fragment.getContinent()) {
-                            case "Africa":
-                                leaderboardId = R.string.leaderboard_country_to_capital_africa;
-                                break;
-                            case "America":
-                                leaderboardId = R.string.leaderboard_country_to_capital_america;
-                                break;
-                            case "Asia":
-                                leaderboardId = R.string.leaderboard_country_to_capital_asia;
-                                break;
-                            case "Europe":
-                                leaderboardId = R.string.leaderboard_country_to_capital_europe;
-                                break;
-                            case "Oceania":
-                                leaderboardId = R.string.leaderboard_country_to_capital_oceania;
-                                break;
-                            case "World":
-                                leaderboardId = R.string.leaderboard_country_to_capital_world;
-                                break;
-                        }
-                        break;
-                    case "capital2country":
-                        switch (fragment.getContinent()) {
-                            case "Africa":
-                                leaderboardId = R.string.leaderboard_capital_to_country_africa;
-                                break;
-                            case "America":
-                                leaderboardId = R.string.leaderboard_capital_to_country_america;
-                                break;
-                            case "Asia":
-                                leaderboardId = R.string.leaderboard_capital_to_country_asia;
-                                break;
-                            case "Europe":
-                                leaderboardId = R.string.leaderboard_capital_to_country_europe;
-                                break;
-                            case "Oceania":
-                                leaderboardId = R.string.leaderboard_capital_to_country_oceania;
-                                break;
-                            case "World":
-                                leaderboardId = R.string.leaderboard_capital_to_country_world;
-                                break;
-                        }
-                        break;
-                }
-                if (leaderboardId != -1) {
-                    Games.Leaderboards.submitScore(googleApiClient, getString(leaderboardId), score);
+                if (googleApiClient != null && googleApiClient.isConnected()) {
+                    int leaderboardId = -1;
+                    switch (fragment.getMode()) {
+                        case "country2flag":
+                            switch (fragment.getContinent()) {
+                                case "Africa":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_africa;
+                                    break;
+                                case "America":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_america;
+                                    break;
+                                case "Asia":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_asia;
+                                    break;
+                                case "Europe":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_europe;
+                                    break;
+                                case "Oceania":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_oceania;
+                                    break;
+                                case "World":
+                                    leaderboardId = R.string.leaderboard_country_to_flag_world;
+                                    break;
+                            }
+                            break;
+                        case "flag2country":
+                            switch (fragment.getContinent()) {
+                                case "Africa":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_africa;
+                                    break;
+                                case "America":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_america;
+                                    break;
+                                case "Asia":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_asia;
+                                    break;
+                                case "Europe":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_europe;
+                                    break;
+                                case "Oceania":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_oceania;
+                                    break;
+                                case "World":
+                                    leaderboardId = R.string.leaderboard_flag_to_country_world;
+                                    break;
+                            }
+                            break;
+                        case "country2capital":
+                            switch (fragment.getContinent()) {
+                                case "Africa":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_africa;
+                                    break;
+                                case "America":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_america;
+                                    break;
+                                case "Asia":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_asia;
+                                    break;
+                                case "Europe":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_europe;
+                                    break;
+                                case "Oceania":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_oceania;
+                                    break;
+                                case "World":
+                                    leaderboardId = R.string.leaderboard_country_to_capital_world;
+                                    break;
+                            }
+                            break;
+                        case "capital2country":
+                            switch (fragment.getContinent()) {
+                                case "Africa":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_africa;
+                                    break;
+                                case "America":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_america;
+                                    break;
+                                case "Asia":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_asia;
+                                    break;
+                                case "Europe":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_europe;
+                                    break;
+                                case "Oceania":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_oceania;
+                                    break;
+                                case "World":
+                                    leaderboardId = R.string.leaderboard_capital_to_country_world;
+                                    break;
+                            }
+                            break;
+                    }
+                    if (leaderboardId != -1) {
+                        Games.Leaderboards.submitScore(googleApiClient, getString(leaderboardId), score);
+                    }
                 }
                 Fragment f = ResultFragment.newInstance(score);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, f).commit();
