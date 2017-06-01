@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,8 @@ public class TextQuestionFragment extends Fragment {
     TextView questionText;
     @BindView(R.id.btn_next)
     FloatingActionButton btnNext;
+    @BindView(R.id.scroll_view)
+    NestedScrollView scrollView;
 
     private GameActivity activity;
 
@@ -117,6 +120,7 @@ public class TextQuestionFragment extends Fragment {
                         public void onSuccess(@NonNull Integer rightAnswer) {
                             if (rightAnswer != finalI)
                                 answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
+                            activity.playFeedbackSound(rightAnswer == finalI);
                             answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
                             btnNext.setVisibility(View.VISIBLE);
                             btnNext.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +147,7 @@ public class TextQuestionFragment extends Fragment {
                                     });
                                 }
                             });
+                            scrollView.fullScroll(View.FOCUS_DOWN);
                         }
 
                         @Override

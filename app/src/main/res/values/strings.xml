@@ -15,7 +15,7 @@
     <string name="body_team">Computer Science majors from <a href="http://uet.vnu.edu.vn">University of Engineering and Technology</a>, Vietnam National University, Hanoi:
     \n• Phạm Nguyễn Hoàng\n• Nguyễn Văn Tiến\n• Đỗ Quang Thành\n• Nguyễn Văn Thắng</string>
     <string name="header_acknowledgements">Acknowledgements</string>
-    <string name="body_acknowledgements">• World countries information is provided by <a href="https://www.worlddata.info">WorldData.info</a> and <a href="https://github.com/mledoze/countries">mledoze/countries on GitHub</a>.\n• World flags are taken from <a href="http://flagpedia.net/">Flagpedia</a>.\n• The flags of Palestine, Myanmar, Peru, Bolivia and South Sudan are sourced from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
+    <string name="body_acknowledgements">• World countries information is provided by <a href="https://www.worlddata.info">WorldData.info</a> and <a href="https://github.com/mledoze/countries">mledoze/countries on GitHub</a>.\n• World flags are taken from <a href="http://flagpedia.net/">Flagpedia</a>.\n• The flags of Palestine, Myanmar, Peru, Bolivia and South Sudan are sourced from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.\n• Sounds are taken from <a href="http://freesound.org">Freesound</a></string>
 
     <string name="radio_africa">Africa</string>
     <string name="label_choose_continent">Continent</string>
@@ -37,7 +37,7 @@
     <string name="msg_oceania_countries">Oceania only has 14 countries. Therefore, choosing 20 or 30 countries is equivalent to \"All\".</string>
     <string name="ok" translatable="false">OK</string>
     <string name="msg_welcome_terrania">Welcome to Terrania!</string>
-    <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world.         Test your knowledge with quizzes about country names, flags, population and country area.</string>
+    <string name="msg_welcome_details">Terrania is an engaging quiz app about countries around the world. Test your knowledge with quizzes about country names, flags, population and country area.</string>
     <string name="btn_play_now">Play now</string>
     <string name="btn_sign_in">Sign in</string>
     <string name="msg_not_signed_in">You are not signed in!</string>
@@ -84,5 +84,9 @@
     <string name="msg_quit_game_prompt">Quit this game?</string>
     <string name="msg_quit_game_detail">If you quit this game, your score will be lost.</string>
     <string name="cancel">Cancel</string>
+    <string name="msg_settings">Game settings</string>
+    <string name="preference_sound">Sound effects</string>
+    <string name="preference_offline">Offline mode</string>
+    <string name="msg_wait">Please wait…</string>
 
 </resources>

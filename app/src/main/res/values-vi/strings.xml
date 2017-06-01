@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Terrania</string>
     <string name="action_settings">Cài đặt</string>
-    <string name="body_acknowledgements">• Thông tin địa lý về các quốc gia được cung cấp bởi <a href="https://www.worlddata.info">WorldData.info</a> cùng <a href="https://github.com/mledoze/countries">mledoze/countries trên GitHub</a>.\n• Quốc kỳ được lấy từ <a href="http://flagpedia.net/">Flagpedia</a>.\n• Quốc kỳ của Palestine, Myanmar, Peru, Bolivia và Nam Sudan được lấy từ <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.</string>
+    <string name="body_acknowledgements">• Thông tin địa lý về các quốc gia được cung cấp bởi <a href="https://www.worlddata.info">WorldData.info</a> cùng <a href="https://github.com/mledoze/countries">mledoze/countries trên GitHub</a>.\n• Quốc kỳ được lấy từ <a href="http://flagpedia.net/">Flagpedia</a>.\n• Quốc kỳ của Palestine, Myanmar, Peru, Bolivia và Nam Sudan được lấy từ <a href="https://commons.wikimedia.org">Wikimedia Commons</a>.\n• Âm thanh được cung cấp bởi <a href="http://freesound.org">Freesound</a></string>
     <string name="msg_logout_prompt">Chạm để đăng xuất</string>
     <string name="msg_oceania_countries">Châu Đại Dương chỉ có đến 14 quốc gia. Vì vậy, chọn 20 hoặc 30 câu hỏi tương đồng với \"Tất cả\"</string>
     <string name="msg_not_signed_in">Bạn chưa đăng nhập!</string>
@@ -63,7 +63,7 @@
     <string name="navigation_drawer_open">Mở khay điều hướng</string>
     <string name="title_activity_country">Quốc gia</string>
     <string name="cancel">Huỷ</string>
-    <string name="msg_game_over"></string>
+    <string name="msg_game_over">Trò chơi kết thúc</string>
     <string name="msg_network_error">Đã xảy ra lỗi. Vui lòng thử lại sau.</string>
     <string name="msg_quit_game_detail">Nếu bạn thoát, điểm số của bạn sẽ không được lưu.</string>
     <string name="msg_quit_game_prompt">Bỏ cuộc chơi?</string>
@@ -71,4 +71,6 @@
     <string name="question_capital_to_country">%s là thủ đô của nước nào?</string>
     <string name="question_country_to_capital">Thủ đô của %s là gì?</string>
     <string name="question_country_to_flag">Đâu là quốc kì của %s?</string>
+    <string name="msg_wait">Vui lòng đợi…</string>
+
 </resources>

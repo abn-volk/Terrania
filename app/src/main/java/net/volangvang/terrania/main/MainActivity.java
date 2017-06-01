@@ -2,7 +2,9 @@ package net.volangvang.terrania.main;
 
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -11,10 +13,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,17 +49,21 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.layout_not_signed_in) View layoutNotSignedIn;
     @BindView(R.id.layout_signed_in) View layoutSignedIn;
     @BindView(R.id.text_signed_in) TextView textSignedIn;
+    @BindView(R.id.switch_sound) SwitchCompat switchSound;
+    @BindView(R.id.switch_offline) SwitchCompat switchOffline;
     TextView prompt;
     TextView textUserName;
     ImageView userImg;
     ImageView userBanner;
     private GoogleApiClient apiClient;
+    private SharedPreferences preferences;
     private static int RC_SIGN_IN = 2948;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -85,6 +93,22 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 onSignOutClicked();
+            }
+        });
+
+        switchSound.setChecked(preferences.getBoolean("sound", false));
+        switchSound.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                preferences.edit().putBoolean("sound", b).apply();
+            }
+        });
+
+        switchOffline.setChecked(preferences.getBoolean("offline", false));
+        switchOffline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                preferences.edit().putBoolean("offline", b).apply();
             }
         });
     }

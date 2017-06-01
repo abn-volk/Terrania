@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -50,10 +51,9 @@ public class Country2FlagFragment extends Fragment {
     List<CardView> answers;
     @BindViews({R.id.answer_1_img, R.id.answer_2_img, R.id.answer_3_img, R.id.answer_4_img})
     List<ImageView> flags;
-    @BindView(R.id.question_text)
-    TextView questionText;
-    @BindView(R.id.btn_next)
-    FloatingActionButton btnNext;
+    @BindView(R.id.question_text) TextView questionText;
+    @BindView(R.id.btn_next) FloatingActionButton btnNext;
+    @BindView(R.id.scroll_view) NestedScrollView scrollView;
 
     private GameActivity activity;
 
@@ -99,7 +99,6 @@ public class Country2FlagFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_country2_flag, container, false);
         ButterKnife.bind(this, view);
         questionText.setText(getString(R.string.question_country_to_flag, question));
-
         for (int i=0; i<4; i++) {
             if (local) {
                 Picasso.with(getContext())
@@ -130,6 +129,7 @@ public class Country2FlagFragment extends Fragment {
                         public void onSuccess(@NonNull Integer rightAnswer) {
                             if (rightAnswer != finalI)
                                 answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
+                            activity.playFeedbackSound(rightAnswer == finalI);
                             answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
                             btnNext.setVisibility(View.VISIBLE);
                             btnNext.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +156,7 @@ public class Country2FlagFragment extends Fragment {
                                     });
                                 }
                             });
+                            scrollView.fullScroll(View.FOCUS_DOWN);
                         }
 
                         @Override

@@ -2,7 +2,9 @@ package net.volangvang.terrania.play;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -10,6 +12,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -21,6 +25,7 @@ import net.volangvang.terrania.play.data.Answer;
 import net.volangvang.terrania.play.data.GameID;
 import net.volangvang.terrania.play.data.Question;
 import net.volangvang.terrania.play.data.UserAnswer;
+import net.volangvang.terrania.play.server.LocalServer;
 import net.volangvang.terrania.play.server.Server;
 import net.volangvang.terrania.play.server.WebServer;
 
@@ -36,8 +41,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static net.volangvang.terrania.R.id.score;
-
 public class GameActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final String EXTRA_MODE = "mode";
     public static final String EXTRA_COUNT = "count";
@@ -45,11 +48,14 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     public static final String TAG = "server_fragment";
     @BindView(R.id.fragment_holder)
     CoordinatorLayout holder;
+    @BindView(R.id.wait_text)
+    TextView waitText;
     private String mode;
     private ServerFragment fragment;
     private Server server;
     private String id = "";
     private String continent;
+    private boolean sound;
     private boolean completed = false;
     private GoogleApiClient googleApiClient;
     private boolean isLocal = false;
@@ -59,7 +65,8 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sound = preferences.getBoolean("sound", false);
         googleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES).build();
@@ -75,7 +82,12 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 Toast.makeText(getApplicationContext(), "Invalid extras", Toast.LENGTH_SHORT).show();
                 finish();
             }
-            Server svr = new WebServer();
+
+            Server svr;
+            isLocal = preferences.getBoolean("offline", false);
+            if (isLocal)
+                svr = new LocalServer(getApplicationContext());
+            else svr = new WebServer();
             fragment = new ServerFragment();
             fragment.setServer(svr);
             fragment.setMode(mode);
@@ -159,6 +171,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
 
                     @Override
                     public void onSuccess(@io.reactivex.annotations.NonNull Question question) {
+                        waitText.setVisibility(View.GONE);
                         if (question.getQuestion() == null)
                             finish();
                         else displayQuestion(question);
@@ -196,8 +209,15 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
         else super.onBackPressed();
     }
 
-    public void displayQuestion(Question question) {
+    public void playFeedbackSound(boolean right) {
+        if (sound) {
+            if (right) SoundPlayer.playFx(getApplicationContext(), "right.wav");
+            else SoundPlayer.playFx(getApplicationContext(), "wrong.wav");
+        }
 
+    }
+
+    public void displayQuestion(Question question) {
         if (question.getQuestion() == null)
             Toast.makeText(getApplicationContext(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
         else {

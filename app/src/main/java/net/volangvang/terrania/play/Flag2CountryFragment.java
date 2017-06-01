@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -54,6 +55,8 @@ public class Flag2CountryFragment extends Fragment {
     ImageView flag;
     @BindView(R.id.btn_next)
     FloatingActionButton btnNext;
+    @BindView(R.id.scroll_view)
+    NestedScrollView scrollView;
 
     private GameActivity activity;
 
@@ -131,32 +134,34 @@ public class Flag2CountryFragment extends Fragment {
                         public void onSuccess(@NonNull Integer rightAnswer) {
                             if (rightAnswer != finalI)
                                 answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
-                                answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
-                                btnNext.setVisibility(View.VISIBLE);
-                                btnNext.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        btnNext.setEnabled(false);
-                                        activity.nextQuestion().subscribe(new SingleObserver<Question>() {
-                                            @Override
-                                            public void onSubscribe(@NonNull Disposable d) {
+                            activity.playFeedbackSound(rightAnswer == finalI);
+                            answers.get(rightAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                            btnNext.setVisibility(View.VISIBLE);
+                            btnNext.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    btnNext.setEnabled(false);
+                                    activity.nextQuestion().subscribe(new SingleObserver<Question>() {
+                                        @Override
+                                        public void onSubscribe(@NonNull Disposable d) {
 
-                                            }
+                                        }
 
-                                            @Override
-                                            public void onSuccess(@NonNull Question question) {
-                                                if (question.getQuestion() == null)
-                                                    btnNext.setEnabled(true);
-                                                activity.displayQuestion(question);
-                                            }
+                                        @Override
+                                        public void onSuccess(@NonNull Question question) {
+                                            if (question.getQuestion() == null)
+                                                btnNext.setEnabled(true);
+                                            activity.displayQuestion(question);
+                                        }
 
-                                            @Override
-                                            public void onError(@NonNull Throwable e) {
+                                        @Override
+                                        public void onError(@NonNull Throwable e) {
 
-                                            }
-                                        });
+                                        }
+                                    });
                                 }
                             });
+                            scrollView.fullScroll(View.FOCUS_DOWN);
                         }
 
                         @Override
