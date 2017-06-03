@@ -71,6 +71,5 @@
     <string name="question_capital_to_country">%s là thủ đô của nước nào?</string>
     <string name="question_country_to_capital">Thủ đô của %s là gì?</string>
     <string name="question_country_to_flag">Đâu là quốc kì của %s?</string>
-    <string name="msg_wait">Vui lòng đợi…</string>
 
 </resources>

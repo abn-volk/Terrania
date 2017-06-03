@@ -3,13 +3,17 @@ package net.volangvang.terrania.play;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.github.jinatonic.confetti.CommonConfetti;
 
 import net.volangvang.terrania.R;
 
@@ -24,6 +28,8 @@ public class ResultFragment extends Fragment {
     TextView scoreText;
     @BindView(R.id.btn_ok)
     Button btnOK;
+    @BindView(R.id.container)
+    LinearLayout container;
 
     private int score;
     private Activity activity;
@@ -75,7 +81,9 @@ public class ResultFragment extends Fragment {
                 activity.finish();
             }
         });
+        CommonConfetti.rainingConfetti(container, new int[] {Color.GREEN, Color.RED, Color.YELLOW}).infinite();
         return view;
     }
+
 
 }

@@ -156,7 +156,12 @@ public class Country2FlagFragment extends Fragment {
                                     });
                                 }
                             });
-                            scrollView.fullScroll(View.FOCUS_DOWN);
+                            scrollView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    scrollView.fullScroll(View.FOCUS_DOWN);
+                                }
+                            });
                         }
 
                         @Override

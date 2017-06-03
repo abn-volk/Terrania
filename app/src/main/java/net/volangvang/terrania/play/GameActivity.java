@@ -3,6 +3,8 @@ package net.volangvang.terrania.play;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -12,8 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -29,6 +29,7 @@ import net.volangvang.terrania.play.server.LocalServer;
 import net.volangvang.terrania.play.server.Server;
 import net.volangvang.terrania.play.server.WebServer;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -48,8 +49,6 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     public static final String TAG = "server_fragment";
     @BindView(R.id.fragment_holder)
     CoordinatorLayout holder;
-    @BindView(R.id.wait_text)
-    TextView waitText;
     private String mode;
     private ServerFragment fragment;
     private Server server;
@@ -171,7 +170,6 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
 
                     @Override
                     public void onSuccess(@io.reactivex.annotations.NonNull Question question) {
-                        waitText.setVisibility(View.GONE);
                         if (question.getQuestion() == null)
                             finish();
                         else displayQuestion(question);
@@ -211,10 +209,23 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void playFeedbackSound(boolean right) {
         if (sound) {
-            if (right) SoundPlayer.playFx(getApplicationContext(), "right.wav");
-            else SoundPlayer.playFx(getApplicationContext(), "wrong.wav");
+            if (right) playSound("right.mp3");
+            else playSound("wrong.mp3");
         }
+    }
 
+    private void playSound(String name) {
+        MediaPlayer fxPlayer = new MediaPlayer();
+        try {
+            AssetFileDescriptor afd = getAssets().openFd(name);
+            fxPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            fxPlayer.prepare();
+            fxPlayer.start();
+        }
+        catch (IOException ignored) {
+
+        }
     }
 
     public void displayQuestion(Question question) {
@@ -333,6 +344,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
                 Fragment f = ResultFragment.newInstance(score);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.fragment_holder, f).commit();
+                if (sound) playSound("success.mp3");
             } else {
                 // Success
                 String question1 = question.getQuestion().getData();
