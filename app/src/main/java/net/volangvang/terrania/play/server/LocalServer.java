@@ -129,7 +129,7 @@ public class LocalServer implements Server{
             }
             int rightPos = getRandomPosition();
             choices.add(rightPos, rightAnswer);
-            Question q = new Question(new Item(question, "hello"), choices);
+            Question q = new Question(new Item(question, "hello"), choices, type);
             questions.add(q);
             answers.add(rightPos);
         }
@@ -142,9 +142,9 @@ public class LocalServer implements Server{
     public Single<Question> getQuestion(String gameID) {
         current ++;
         if (!id.equals(gameID) || questions == null)
-            return Single.just(new Question(null, null));
+            return Single.just(new Question(null, null, null));
         if (current == questions.size())
-            return Single.just(new Question(new Item(null, null), null));
+            return Single.just(new Question(new Item(null, null), null, null));
         return Single.just(questions.get(current));
     }
 

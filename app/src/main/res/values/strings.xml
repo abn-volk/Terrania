@@ -78,7 +78,9 @@
     <string name="ct2cp_value" translatable="false">country2capital</string>
     <string name="cp2ct_value" translatable="false">capital2country</string>
     <string name="msg_network_error">An error has occurred. Please try again.</string>
-
+    <string name="mixed">Mixed</string>
+    <string name="mixed_value" translatable="false">mixed</string>
+    <string name="desc_mixed">Enjoy a mix of four question types!</string>
     <string name="msg_game_over">Game over</string>
     <string name="msg_your_score">Your score is</string>
     <string name="msg_quit_game_prompt">Quit this game?</string>

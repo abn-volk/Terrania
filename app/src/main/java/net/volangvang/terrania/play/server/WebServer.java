@@ -26,7 +26,7 @@ public class WebServer implements Server {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.followRedirects(false);
         OkHttpClient httpClient = builder.build();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://139.59.116.119:5000/api/games/")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://terrania.dev.nyanwith.me/api/games/")
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
@@ -49,17 +49,17 @@ public class WebServer implements Server {
                     @Override
                     public Question apply(@NonNull Response<Question> response) throws Exception {
                         if (response.code() == 303)
-                            return new Question(new Item(null, null), null);
+                            return new Question(new Item(null, null), null, null);
                         else if (response.code() == 200) {
                             return response.body();
                         }
-                        return new Question(null, null);
+                        return new Question(null, null, null);
                     }
                 })
                 .onErrorReturn(new Function<Throwable, Question>() {
                     @Override
                     public Question apply(@NonNull Throwable throwable) throws Exception {
-                        return new Question(null, null);
+                        return new Question(null, null, null);
                     }
                 });
         return call;

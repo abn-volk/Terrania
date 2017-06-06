@@ -81,7 +81,9 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 Toast.makeText(getApplicationContext(), "Invalid extras", Toast.LENGTH_SHORT).show();
                 finish();
             }
-
+            if (continent.equals("Oceania") && !mode.equals(getString(R.string.mixed_value))) {
+                Toast.makeText(getApplicationContext(), R.string.msg_oceania_countries, Toast.LENGTH_SHORT).show();
+            }
             Server svr;
             isLocal = preferences.getBoolean("offline", false);
             if (isLocal)
@@ -337,6 +339,28 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                                     break;
                             }
                             break;
+                        case "mixed":
+                            switch (fragment.getContinent()) {
+                                case "Africa":
+                                    leaderboardId = R.string.leaderboard_mixed_africa;
+                                    break;
+                                case "America":
+                                    leaderboardId = R.string.leaderboard_mixed_america;
+                                    break;
+                                case "Asia":
+                                    leaderboardId = R.string.leaderboard_mixed_asia;
+                                    break;
+                                case "Europe":
+                                    leaderboardId = R.string.leaderboard_mixed_europe;
+                                    break;
+                                case "Oceania":
+                                    leaderboardId = R.string.leaderboard_mixed_oceania;
+                                    break;
+                                case "World":
+                                    leaderboardId = R.string.leaderboard_mixed_world;
+                                    break;
+                            }
+                            break;
                     }
                     if (leaderboardId != -1) {
                         Games.Leaderboards.submitScore(googleApiClient, getString(leaderboardId), score);
@@ -352,8 +376,9 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                 String choice1 = question.getAnswers().get(1).getData();
                 String choice2 = question.getAnswers().get(2).getData();
                 String choice3 = question.getAnswers().get(3).getData();
+                String questionType = question.getQuestionType();
                 Fragment frag;
-                switch (mode) {
+                switch (question.getQuestionType()) {
                     case "country2flag":
                         frag = Country2FlagFragment.newInstance(question1, choice0, choice1, choice2, choice3, isLocal);
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
@@ -363,11 +388,11 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                         break;
                     case "country2capital":
-                        frag = TextQuestionFragment.newInstance(question1, choice0, choice1, choice2, choice3, mode);
+                        frag = TextQuestionFragment.newInstance(question1, choice0, choice1, choice2, choice3, questionType);
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                         break;
                     case "capital2country":
-                        frag = TextQuestionFragment.newInstance(question1, choice0, choice1, choice2, choice3, mode);
+                        frag = TextQuestionFragment.newInstance(question1, choice0, choice1, choice2, choice3, questionType);
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left).replace(R.id.fragment_holder, frag).commit();
                         break;
                 }

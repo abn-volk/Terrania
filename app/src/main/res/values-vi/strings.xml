@@ -71,5 +71,7 @@
     <string name="question_capital_to_country">%s là thủ đô của nước nào?</string>
     <string name="question_country_to_capital">Thủ đô của %s là gì?</string>
     <string name="question_country_to_flag">Đâu là quốc kì của %s?</string>
+    <string name="desc_mixed">Hãy thử sức cùng hỗn hợp bốn loại câu hỏi!</string>
+    <string name="mixed">Hỗn hợp</string>
 
 </resources>

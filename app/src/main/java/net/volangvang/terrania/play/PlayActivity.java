@@ -1,6 +1,7 @@
 package net.volangvang.terrania.play;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,10 +21,12 @@ public class PlayActivity extends AppCompatActivity {
     private String[] gameModes = {};
     private String[] gameModeValues = {};
     private String[] gameModeDescriptions = {};
+    private boolean offline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        offline = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("offline", false);
         setContentView(R.layout.activity_play);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -47,7 +50,8 @@ public class PlayActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            if (offline) return 4;
+            else return 5;
         }
     }
 }

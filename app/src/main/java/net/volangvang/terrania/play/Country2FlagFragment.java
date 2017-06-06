@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
@@ -34,7 +33,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-public class Country2FlagFragment extends Fragment {
+public class Country2FlagFragment extends QuestionFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String QUESTION = "question";
     private static final String CHOICE1 = "choice1";
@@ -127,6 +126,7 @@ public class Country2FlagFragment extends Fragment {
 
                         @Override
                         public void onSuccess(@NonNull Integer rightAnswer) {
+                            answer(finalI, rightAnswer);
                             if (rightAnswer != finalI)
                                 answers.get(finalI).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
                             activity.playFeedbackSound(rightAnswer == finalI);
@@ -175,6 +175,42 @@ public class Country2FlagFragment extends Fragment {
                     });
                 }
             });
+
+            if (savedInstanceState!= null && savedInstanceState.getBoolean("answered", false)) {
+                answer = savedInstanceState.getInt("answer");
+                correctAnswer = savedInstanceState.getInt("correctAnswer");
+                answers.get(answer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
+                answers.get(correctAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                for (CardView cv : answers) {
+                    cv.setClickable(false);
+                }
+                btnNext.setVisibility(View.VISIBLE);
+                btnNext.setEnabled(true);
+                btnNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        btnNext.setEnabled(false);
+                        activity.nextQuestion().subscribe(new SingleObserver<Question>() {
+                            @Override
+                            public void onSubscribe(@NonNull Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onSuccess(@NonNull Question question) {
+                                activity.displayQuestion(question);
+                                if (question.getQuestion() == null)
+                                    btnNext.setEnabled(true);
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+
+                            }
+                        });
+                    }
+                });
+            }
         }
 
         return view;

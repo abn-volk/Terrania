@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
         android:paddingBottom="16dp"
         tools:text="The capital of Suriname is..." />
     <LinearLayout

@@ -11,10 +11,4 @@ public interface Server {
     Single<GameID> newGame(String type, String continent, String language, int count);
     Single<Question> getQuestion(String gameID);
     Single<Answer> answerQuestion(String gameID, UserAnswer answer);
-
-    enum Status {
-        OK,
-        ERROR,
-        COMPLETED
-    }
 }

@@ -4,36 +4,42 @@ Google Play game services IDs.
 Save this file as res/values/games-ids.xml in your project.
 -->
 <resources>
-    <string name="app_id" translatable="false">242795269730</string>
-    <string name="package_name" translatable="false">net.volangvang.terrania</string>
-    <string name="achievement_first_timer" translatable="false">CgkI4pznvYgHEAIQAQ</string>
-    <string name="achievement_baby_steps" translatable="false">CgkI4pznvYgHEAIQAg</string>
-    <string name="achievement_vexillologist" translatable="false">CgkI4pznvYgHEAIQAw</string>
-    <string name="achievement_frequent_flyer" translatable="false">CgkI4pznvYgHEAIQBA</string>
-    <string name="achievement_a_thousand_miles" translatable="false">CgkI4pznvYgHEAIQHg</string>
-    <string name="achievement_obsessed" translatable="false">CgkI4pznvYgHEAIQBQ</string>
-    <string name="leaderboard_country_to_flag_africa" translatable="false">CgkI4pznvYgHEAIQBg</string>
-    <string name="leaderboard_country_to_flag_america" translatable="false">CgkI4pznvYgHEAIQBw</string>
-    <string name="leaderboard_country_to_flag_asia" translatable="false">CgkI4pznvYgHEAIQCA</string>
-    <string name="leaderboard_country_to_flag_europe" translatable="false">CgkI4pznvYgHEAIQCQ</string>
-    <string name="leaderboard_country_to_flag_oceania" translatable="false">CgkI4pznvYgHEAIQCg</string>
-    <string name="leaderboard_country_to_flag_world" translatable="false">CgkI4pznvYgHEAIQCw</string>
-    <string name="leaderboard_flag_to_country_africa" translatable="false">CgkI4pznvYgHEAIQDA</string>
-    <string name="leaderboard_flag_to_country_america" translatable="false">CgkI4pznvYgHEAIQDQ</string>
-    <string name="leaderboard_flag_to_country_asia" translatable="false">CgkI4pznvYgHEAIQDg</string>
-    <string name="leaderboard_flag_to_country_europe" translatable="false">CgkI4pznvYgHEAIQDw</string>
-    <string name="leaderboard_flag_to_country_oceania" translatable="false">CgkI4pznvYgHEAIQEA</string>
-    <string name="leaderboard_flag_to_country_world" translatable="false">CgkI4pznvYgHEAIQEQ</string>
-    <string name="leaderboard_country_to_capital_africa" translatable="false">CgkI4pznvYgHEAIQEg</string>
-    <string name="leaderboard_country_to_capital_america" translatable="false">CgkI4pznvYgHEAIQEw</string>
-    <string name="leaderboard_country_to_capital_asia" translatable="false">CgkI4pznvYgHEAIQFA</string>
-    <string name="leaderboard_country_to_capital_europe" translatable="false">CgkI4pznvYgHEAIQFQ</string>
-    <string name="leaderboard_country_to_capital_oceania" translatable="false">CgkI4pznvYgHEAIQFg</string>
-    <string name="leaderboard_country_to_capital_world" translatable="false">CgkI4pznvYgHEAIQFw</string>
-    <string name="leaderboard_capital_to_country_africa" translatable="false">CgkI4pznvYgHEAIQGA</string>
-    <string name="leaderboard_capital_to_country_america" translatable="false">CgkI4pznvYgHEAIQGQ</string>
-    <string name="leaderboard_capital_to_country_asia" translatable="false">CgkI4pznvYgHEAIQGg</string>
-    <string name="leaderboard_capital_to_country_europe" translatable="false">CgkI4pznvYgHEAIQGw</string>
-    <string name="leaderboard_capital_to_country_oceania" translatable="false">CgkI4pznvYgHEAIQHA</string>
-    <string name="leaderboard_capital_to_country_world" translatable="false">CgkI4pznvYgHEAIQHQ</string>
+    <string name="app_id">242795269730</string>
+    <string name="package_name">net.volangvang.terrania</string>
+    <string name="achievement_first_timer">CgkI4pznvYgHEAIQAQ</string>
+    <string name="achievement_baby_steps">CgkI4pznvYgHEAIQAg</string>
+    <string name="achievement_vexillologist">CgkI4pznvYgHEAIQAw</string>
+    <string name="achievement_frequent_flyer">CgkI4pznvYgHEAIQBA</string>
+    <string name="achievement_a_thousand_miles">CgkI4pznvYgHEAIQHg</string>
+    <string name="achievement_obsessed">CgkI4pznvYgHEAIQBQ</string>
+    <string name="leaderboard_country_to_flag_africa">CgkI4pznvYgHEAIQBg</string>
+    <string name="leaderboard_country_to_flag_america">CgkI4pznvYgHEAIQBw</string>
+    <string name="leaderboard_country_to_flag_asia">CgkI4pznvYgHEAIQCA</string>
+    <string name="leaderboard_country_to_flag_europe">CgkI4pznvYgHEAIQCQ</string>
+    <string name="leaderboard_country_to_flag_oceania">CgkI4pznvYgHEAIQCg</string>
+    <string name="leaderboard_country_to_flag_world">CgkI4pznvYgHEAIQCw</string>
+    <string name="leaderboard_flag_to_country_africa">CgkI4pznvYgHEAIQDA</string>
+    <string name="leaderboard_flag_to_country_america">CgkI4pznvYgHEAIQDQ</string>
+    <string name="leaderboard_flag_to_country_asia">CgkI4pznvYgHEAIQDg</string>
+    <string name="leaderboard_flag_to_country_europe">CgkI4pznvYgHEAIQDw</string>
+    <string name="leaderboard_flag_to_country_oceania">CgkI4pznvYgHEAIQEA</string>
+    <string name="leaderboard_flag_to_country_world">CgkI4pznvYgHEAIQEQ</string>
+    <string name="leaderboard_country_to_capital_africa">CgkI4pznvYgHEAIQEg</string>
+    <string name="leaderboard_country_to_capital_america">CgkI4pznvYgHEAIQEw</string>
+    <string name="leaderboard_country_to_capital_asia">CgkI4pznvYgHEAIQFA</string>
+    <string name="leaderboard_country_to_capital_europe">CgkI4pznvYgHEAIQFQ</string>
+    <string name="leaderboard_country_to_capital_oceania">CgkI4pznvYgHEAIQFg</string>
+    <string name="leaderboard_country_to_capital_world">CgkI4pznvYgHEAIQFw</string>
+    <string name="leaderboard_capital_to_country_africa">CgkI4pznvYgHEAIQGA</string>
+    <string name="leaderboard_capital_to_country_america">CgkI4pznvYgHEAIQGQ</string>
+    <string name="leaderboard_capital_to_country_asia">CgkI4pznvYgHEAIQGg</string>
+    <string name="leaderboard_capital_to_country_europe">CgkI4pznvYgHEAIQGw</string>
+    <string name="leaderboard_capital_to_country_oceania">CgkI4pznvYgHEAIQHA</string>
+    <string name="leaderboard_capital_to_country_world">CgkI4pznvYgHEAIQHQ</string>
+    <string name="leaderboard_mixed_africa">CgkI4pznvYgHEAIQIQ</string>
+    <string name="leaderboard_mixed_america">CgkI4pznvYgHEAIQIg</string>
+    <string name="leaderboard_mixed_asia">CgkI4pznvYgHEAIQIw</string>
+    <string name="leaderboard_mixed_europe">CgkI4pznvYgHEAIQJA</string>
+    <string name="leaderboard_mixed_oceania">CgkI4pznvYgHEAIQJQ</string>
+    <string name="leaderboard_mixed_world">CgkI4pznvYgHEAIQJg</string>
 </resources>

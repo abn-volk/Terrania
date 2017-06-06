@@ -99,6 +99,8 @@ public class GameModeFragment extends Fragment {
                     count = maxCounts[continentId];
                 else count = Integer.parseInt(selectedNumber);
                 Intent intent = new Intent(getContext(), GameActivity.class);
+                if (gameMode.equals(getActivity().getString(R.string.mixed_value)))
+                    count *= 4;
                 intent.putExtra(GameActivity.EXTRA_COUNT, count);
                 intent.putExtra(GameActivity.EXTRA_MODE, gameModeValue);
                 intent.putExtra(GameActivity.EXTRA_CONTINENT, selectedContinent);
@@ -118,6 +120,9 @@ public class GameModeFragment extends Fragment {
                     break;
                 case "capital2country":
                     Picasso.with(getContext()).load(R.drawable.cp2ct).into(img);
+                    break;
+                case "mixed":
+                    img.setImageResource(R.drawable.ic_mixed);
                     break;
             }
         }

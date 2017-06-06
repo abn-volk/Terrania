@@ -5,18 +5,21 @@
         <item>@string/f2c</item>
         <item>@string/ct2cp</item>
         <item>@string/cp2ct</item>
+        <item>@string/mixed</item>
     </string-array>
     <string-array name="game_values">
         <item>@string/c2f_value</item>
         <item>@string/f2c_value</item>
         <item>@string/ct2cp_value</item>
         <item>@string/cp2ct_value</item>
+        <item>@string/mixed_value</item>
     </string-array>
     <string-array name="desc_game_modes">
         <item>@string/desc_c2f</item>
         <item>@string/desc_f2c</item>
         <item>@string/desc_ct2cp</item>
         <item>@string/desc_cp2ct</item>
+        <item>@string/desc_mixed</item>
     </string-array>
     <string-array name="continents">
         <item>@string/radio_africa</item>
