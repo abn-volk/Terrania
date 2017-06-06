@@ -106,8 +106,7 @@
             android:visibility="gone"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true"
-            tools:visibility="visible"
-            app:cardBackgroundColor="@color/colorWhiteTransparent">
+            tools:visibility="visible">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
