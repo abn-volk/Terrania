@@ -15,7 +15,7 @@ public class Question {
     private List<Item> answers;
     @SerializedName("question_type")
     private String questionType;
-
+    
     public Item getQuestion() {
         return question;
     }

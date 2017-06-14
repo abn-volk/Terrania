@@ -6,6 +6,8 @@ public class GameRequest {
     private int question_count;
     private String continent;
 
+
+    /* Create a game with information */
     public GameRequest(String type, String language, int question_count, String continent) {
         this.type = type;
         this.language = language;

@@ -13,6 +13,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+/** Create a new game*/
+
 public interface IGameServer {
     @POST("new")
     Single<GameID> newGame(@Body GameRequest request);

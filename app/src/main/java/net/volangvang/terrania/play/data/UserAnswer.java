@@ -7,6 +7,7 @@ public class UserAnswer {
         this.answer = answer;
     }
 
+    /* Return the answer player chosed */
     public int getAnswer() {
         return answer;
     }

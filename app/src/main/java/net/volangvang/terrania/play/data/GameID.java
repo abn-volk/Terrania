@@ -6,6 +6,7 @@ public class GameID {
         this.hashed_id = hashed_id;
     }
 
+    /* Return the game id */
     public String getHashed_id() {
         return hashed_id;
     }

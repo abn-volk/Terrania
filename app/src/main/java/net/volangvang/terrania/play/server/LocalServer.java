@@ -40,7 +40,9 @@ public class LocalServer implements Server{
 
     @Override
     public Single<GameID> newGame(String type, String continent, String language, int count) {
-        Log.d("Terrania", "Opened local server with arguments: " + type + continent + language + Integer.toString(count));
+
+        Log.d("Terrania", "Opened local server with arguments: " 
+            + type + continent + language + Integer.toString(count));
         id = UUID.randomUUID().toString();
         current = -1;
         questions = new ArrayList<>(count);
@@ -54,6 +56,8 @@ public class LocalServer implements Server{
         String choiceType = null;
         String[] projection = null;
         int maxCount = 195;
+
+        /* Create a game based on the type user choosed */
         switch (type) {
             case "country2flag":
                 projection = new String[] {nameColumn, countryCodeColumn};
@@ -84,6 +88,7 @@ public class LocalServer implements Server{
             return Single.error(new Exception("No questionColumn."));
         }
 
+        /* Set maximum questions for each continent */
         switch (continent) {
             case "Africa":
                 maxCount = 54;
@@ -102,6 +107,8 @@ public class LocalServer implements Server{
                 break;
         }
         if (count > maxCount) count = maxCount;
+
+        /* If player choose the questions about a contient or the whole world*/
         Cursor cursor;
         if ("World".equals(continent)) {
             cursor = context.getContentResolver().query(CountryProvider.CONTENT_URI,
@@ -114,7 +121,7 @@ public class LocalServer implements Server{
 
         List<Integer> indices = new ArrayList<>(range.subList(0, maxCount));
         Collections.shuffle(indices);
-        // Create questions
+        /* Create questions */
         for (int i=0; i<count; i++) {
             cursor.moveToPosition(indices.get(i));
             String question = cursor.getString(cursor.getColumnIndex(questionColumn));
