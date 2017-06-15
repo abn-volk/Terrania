@@ -89,5 +89,6 @@
     <string name="msg_settings">Game settings</string>
     <string name="preference_sound">Sound effects</string>
     <string name="preference_offline">Offline mode</string>
+    <string name="msg_offline">Go online to save your high score and achievements!</string>
 
 </resources>

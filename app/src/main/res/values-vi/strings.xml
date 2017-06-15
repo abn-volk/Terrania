@@ -10,7 +10,7 @@
     <string name="msg_sign_in_details">Đăng nhập để thưởng thức tối đa trò chơi, ví dụ như thành tích và bảng xếp hạng.</string>
     <string name="msg_signed_in">Xin chào bạn %s</string>
     <string name="msg_welcome">Xin chào</string>
-    <string name="msg_welcome_details">Terrania là một trò chơi đố vui về các quốc gia trên toàn thế giới. Hãy thử kiến thức của bạn cùng những câu hỏi về tên các quốc gia, quốc kỳ, dân số cũng như diện tích.</string>
+    <string name="msg_welcome_details">Terrania là trò chơi đố vui về các quốc gia trên toàn thế giới. Hãy kiểm tra kiến thức của bạn cùng những câu hỏi về tên các quốc gia, quốc kỳ, dân số cũng như diện tích.</string>
     <string name="msg_welcome_terrania">Chào mừng bạn đến với Terrania!</string>
     <string name="nav_about">Giới thiệu</string>
     <string name="nav_home">Trang chủ</string>
@@ -76,5 +76,6 @@
     <string name="msg_settings">Cài đặt</string>
     <string name="preference_offline">Chơi offline</string>
     <string name="preference_sound">Âm thanh</string>
+    <string name="msg_offline">Hãy chơi online để lưu điểm cao và thành tích của bạn!</string>
 
 </resources>

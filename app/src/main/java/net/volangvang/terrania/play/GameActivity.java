@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -139,13 +140,28 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            decorView.setSystemUiVisibility(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            }
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN);
+            }
+            else {
+                decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            }
+        }
     }
 
     public Single<Integer> answer(final int index) {
@@ -157,11 +173,11 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                     public void accept(@io.reactivex.annotations.NonNull Answer answer) throws Exception {
                         if (answer.getCorrect_answer() == index) {
                             fragment.bumpScore();
-                            if (googleApiClient != null && googleApiClient.isConnected()) {
+                            if (!isLocal && googleApiClient != null && googleApiClient.isConnected()) {
                                 Games.Achievements.increment(googleApiClient, getString(R.string.achievement_a_thousand_miles), 1);
                             }
                         } else {
-                            if (googleApiClient != null && googleApiClient.isConnected()) {
+                            if (!isLocal && googleApiClient != null && googleApiClient.isConnected()) {
                                 // Baby steps - first wrong answer
                                 Games.Achievements.unlock(googleApiClient, getString(R.string.achievement_baby_steps));
                             }
@@ -252,7 +268,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
             if (question.getQuestion().getData() == null) {
                 // Completed
                 completed = true;
-                if (googleApiClient != null && googleApiClient.isConnected()) {
+                if (!isLocal && googleApiClient != null && googleApiClient.isConnected()) {
                     // Unlock First timer - Play the first game
                     Games.Achievements.unlock(googleApiClient, getString(R.string.achievement_first_timer));
                     if (fragment.getScore() == 195 && fragment.getMode().contains("flag")) {
@@ -263,7 +279,7 @@ public class GameActivity extends AppCompatActivity implements GoogleApiClient.C
                     Games.Achievements.increment(googleApiClient, getString(R.string.achievement_obsessed), 1);
                 }
                 int score = fragment.getScore();
-                if (googleApiClient != null && googleApiClient.isConnected()) {
+                if (!isLocal && googleApiClient != null && googleApiClient.isConnected()) {
                     int leaderboardId = -1;
                     switch (fragment.getMode()) {
                         case "country2flag":
