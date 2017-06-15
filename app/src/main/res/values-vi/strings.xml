@@ -73,5 +73,8 @@
     <string name="question_country_to_flag">Đâu là quốc kì của %s?</string>
     <string name="desc_mixed">Hãy thử sức cùng hỗn hợp bốn loại câu hỏi!</string>
     <string name="mixed">Hỗn hợp</string>
+    <string name="msg_settings">Cài đặt</string>
+    <string name="preference_offline">Chơi offline</string>
+    <string name="preference_sound">Âm thanh</string>
 
 </resources>

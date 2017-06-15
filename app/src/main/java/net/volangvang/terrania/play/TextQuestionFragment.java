@@ -167,6 +167,7 @@ public class TextQuestionFragment extends QuestionFragment {
                 correctAnswer = savedInstanceState.getInt("correctAnswer");
                 answers.get(answer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorWrong));
                 answers.get(correctAnswer).setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRight));
+                answer(answer, correctAnswer);
                 for (CardView cv : answers) {
                     cv.setClickable(false);
                 }
